@@ -5,10 +5,38 @@
  */
 
 import VueRouter from 'vue-router';
+import { Form, HasError, AlertError } from 'vform';
+import VueProgressBar from 'vue-progressbar';
+import Swal from 'sweetalert2';
+
 
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+window.Fire = new Vue();
+
+window.Swal = Swal;
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+});
+
+window.Toast = Toast;
+
+window.Form = Form;
+Vue.component(HasError.name, HasError);
+Vue.component(AlertError.name, AlertError);
+
+
+Vue.use(VueProgressBar, {
+    color: 'rgb(143, 255, 199)',
+    failedColor: 'red',
+    height: '2px'
+});
 
 /**
  * The following block of code may be used to automatically register your
@@ -22,6 +50,9 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('pagination', require('laravel-vue-pagination'));
+
+
 
 /**
  * Vue Router
@@ -31,8 +62,16 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.use(VueRouter);
 
 // define routes for users
-const routes = [
-
+const routes = [{
+        path: '/dashboard',
+        name: 'dashboard',
+        component: require('./components/organization/Dashboard.vue').default
+    },
+    {
+        path: '/categories',
+        name: 'categoryIndex',
+        component: require('./components/organization/category/Index.vue').default
+    },
 ]
 
 const router = new VueRouter({ routes });
