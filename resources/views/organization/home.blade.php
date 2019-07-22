@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Bebeartie | Dashboard</title>
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
@@ -31,10 +33,11 @@
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('lte/plugins/datatables/dataTables.bootstrap4.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
+    <div class="wrapper" id="app">
         <!-- Navbar -->
         @include('organization.layouts.header')
         <!-- /.navbar -->
@@ -49,6 +52,8 @@
             <section class="content">
                 <div class="container-fluid">
                     <router-view></router-view>
+                    <!-- set progressbar -->
+                    <vue-progress-bar></vue-progress-bar>
                 </div><!-- /.container-fluid -->
             </section>
             <!-- /.content -->
@@ -60,6 +65,7 @@
     </div>
     <!-- ./wrapper -->
 
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- jQuery -->
     <script src="{{ asset('lte/plugins/jquery/jquery.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
