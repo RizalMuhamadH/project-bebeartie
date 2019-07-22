@@ -17,4 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
+Route::get('/api/categories', 'CategoryController@index');
+Route::post('/api/category', 'CategoryController@store');
+Route::put('/api/category/{id}', 'CategoryController@update');
+Route::delete('/api/category_delete/{id}', 'CategoryController@destroy');
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('{path}', 'HomeController@index')->where('path','([A-z\d\/_.]+)?');
+
+
