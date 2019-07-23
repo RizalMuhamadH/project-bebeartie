@@ -25,7 +25,7 @@
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <router-link to="/dashboard" class="nav-link">
+                    <router-link to="/" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -34,9 +34,21 @@
 
                 </li>
                 <li class="nav-item">
+                    <router-link to="/products" class="nav-link">
+                        <i class="nav-icon fas fa-clipboard-list text-info"></i>
+                        <p>Product</p>
+                    </router-link>
+                </li>
+                <li class="nav-item">
                     <router-link to="/categories" class="nav-link">
                         <i class="nav-icon fas fa-layer-group text-info"></i>
                         <p>Category</p>
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/promotes" class="nav-link">
+                        <i class="nav-icon fas fa-percent text-info"></i>
+                        <p>Promote</p>
                     </router-link>
                 </li>
             </ul>

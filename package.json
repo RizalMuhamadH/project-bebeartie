@@ -28,6 +28,7 @@
         "sweetalert2": "^8.14.0",
         "vform": "^1.0.1",
         "vue-progressbar": "^0.7.5",
-        "vue-router": "^3.0.7"
+        "vue-router": "^3.0.7",
+        "vue-tinymce-editor": "^1.6.2"
     }
 }

@@ -8,6 +8,7 @@ import VueRouter from 'vue-router';
 import { Form, HasError, AlertError } from 'vform';
 import VueProgressBar from 'vue-progressbar';
 import Swal from 'sweetalert2';
+import Tinymce from 'vue-tinymce-editor';
 
 
 require('./bootstrap');
@@ -51,7 +52,7 @@ Vue.use(VueProgressBar, {
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
-
+Vue.component('Tinymce', Tinymce);
 
 
 /**
@@ -63,14 +64,29 @@ Vue.use(VueRouter);
 
 // define routes for users
 const routes = [{
-        path: '/dashboard',
-        name: 'dashboard',
+        path: '/',
+        name: 'home',
         component: require('./components/organization/Dashboard.vue').default
     },
     {
         path: '/categories',
         name: 'categoryIndex',
         component: require('./components/organization/category/Index.vue').default
+    },
+    {
+        path: '/promotes',
+        name: 'promoteIndex',
+        component: require('./components/organization/promote/Index.vue').default
+    },
+    {
+        path: '/products',
+        name: 'productIndex',
+        component: require('./components/organization/product/Index.vue').default
+    },
+    {
+        path: '/products/form',
+        name: 'productForm',
+        component: require('./components/organization/product/Form.vue').default
     },
 ]
 

@@ -10650,9 +10650,3 @@ a.text-dark:focus {
   text-shadow: none;
 }
 
-.router-link-active {
-  background: #39f;
-  color: #fff;
-  text-shadow: none;
-}
-
