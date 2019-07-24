@@ -30,7 +30,7 @@
         <div class="card card-primary card-outline">
           <div class="card-header">
             <div class="pull-right">
-              <router-link to="/products/form" class="btn btn-success">Add New</router-link>
+              <router-link to="/products/create" class="btn btn-success">Add New</router-link>
             </div>
           </div>
           <div class="card-body">
@@ -51,7 +51,7 @@
                   <th>Category</th>
                   <th>Promote</th>
                   <th>Weight</th>
-                  <th>Desc</th>
+                  <!-- <th>Desc</th> -->
                   <th width="280px">Action</th>
                 </tr>
                 <tr v-for="item in product.data" :key="item.id">
@@ -60,22 +60,27 @@
                   <td>{{ item.price }}</td>
                   <td>{{ item.stock }}</td>
                   <td>{{ item.status }}</td>
-                  <td>{{ item.image }}</td>
-                  <td>{{ item.categories.name }}</td>
-                  <td>{{ item.promotes.name }}</td>
-                  <td>{{ item.weight }}</td>
-                  <td>{{ item.desc }}</td>
                   <td>
                     <center>
-                      <a
-                        class="btn btn-primary"
-                        href="#"
-                      >Edit</a>
+                      <img :src="item.image_thumb" style="width:100px;height:100px;" />
+                    </center>
+                  </td>
+                  <td>{{ item.category.name }}</td>
+                  <td>{{ item.promote.name }}</td>
+                  <td>{{ item.weight }}</td>
+                  <!-- <td v-html="item.desc">{{ item.desc }}</td> -->
+                  <td>
+                    <center>
+                      <router-link :to="'products/'+item.id+'/edit'" class="btn btn-primary" >Edit</router-link>
                       <button
                         class="btn btn-danger delete"
                         style="margin-left:20px;"
                         @click="del(item.id)"
                       >Delete</button>
+                      <button
+                        class="btn btn-info"
+                        style="margin-left:20px;"
+                      >View</button>
                     </center>
                   </td>
                 </tr>

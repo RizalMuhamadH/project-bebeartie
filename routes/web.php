@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/api/other', 'OtherController@index');
 
 Route::get('/api/categories', 'CategoryController@index');
 Route::post('/api/category', 'CategoryController@store');
@@ -30,6 +31,7 @@ Route::delete('/api/promote_delete/{id}', 'PromoteController@destroy');
 
 Route::get('/api/products', 'ProductController@index');
 Route::post('/api/product', 'ProductController@store');
+Route::get('/api/product/{id}/edit', 'ProductController@edit');
 Route::put('/api/product/{id}', 'ProductController@update');
 Route::delete('/api/product_delete/{id}', 'ProductController@destroy');
 

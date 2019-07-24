@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Promote extends Model
 {
     protected $fillable = [
-        'name','discount','desc','product_id'
+        'name','discount','desc'
     ];
 
     public function product()

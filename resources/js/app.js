@@ -21,7 +21,7 @@ window.Swal = Swal;
 
 const Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: 'bottom-end',
     showConfirmButton: false,
     timer: 3000
 });
@@ -84,9 +84,14 @@ const routes = [{
         component: require('./components/organization/product/Index.vue').default
     },
     {
-        path: '/products/form',
+        path: '/products/create',
         name: 'productForm',
-        component: require('./components/organization/product/Form.vue').default
+        component: require('./components/organization/product/Create.vue').default
+    },
+    {
+        path: '/products/:id/edit',
+        name: 'productForm',
+        component: require('./components/organization/product/Update.vue').default
     },
 ]
 
