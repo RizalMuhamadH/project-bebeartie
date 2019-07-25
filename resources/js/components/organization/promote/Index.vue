@@ -198,7 +198,7 @@ export default {
     },
     getResults(page = 1) {
       axios.get("api/promotes?page=" + page).then(response => {
-        this.category = response.data;
+        this.promote = response.data;
       });
     },
     createPromote() {

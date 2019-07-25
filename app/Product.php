@@ -24,4 +24,9 @@ class Product extends Model
     {
         return $this->belongsTo(Promote::class);
     }
+
+    public function list_item()
+    {
+        return $this->hasMany(List_item::class);
+    }
 }

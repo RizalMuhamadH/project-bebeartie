@@ -90,8 +90,13 @@ const routes = [{
     },
     {
         path: '/products/:id/edit',
-        name: 'productForm',
+        name: 'productUpdate',
         component: require('./components/organization/product/Update.vue').default
+    },
+    {
+        path: '/members',
+        name: 'memberIndex',
+        component: require('./components/organization/member/Index.vue').default
     },
 ]
 

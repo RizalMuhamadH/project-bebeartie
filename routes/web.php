@@ -29,6 +29,12 @@ Route::post('/api/promote', 'PromoteController@store');
 Route::put('/api/promote/{id}', 'PromoteController@update');
 Route::delete('/api/promote_delete/{id}', 'PromoteController@destroy');
 
+
+Route::get('/api/members', 'MemberController@index');
+Route::post('/api/member', 'MemberController@store');
+Route::put('/api/member/{id}', 'MemberController@update');
+Route::delete('/api/member_delete/{id}', 'MemberController@destroy');
+
 Route::get('/api/products', 'ProductController@index');
 Route::post('/api/product', 'ProductController@store');
 Route::get('/api/product/{id}/edit', 'ProductController@edit');
