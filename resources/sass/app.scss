@@ -2,14 +2,21 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 // Variables
 @import 'variables';
+// Bulma
+@import '~bulma/bulma';
+// Bulma
+@import "node_modules/bulma-extensions/bulma-carousel/dist/css/bulma-carousel.min";
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';
 .router-link-exact-active {
     background: #39f;
     color: #fff;
     text-shadow: none;
 }
 
+// .is-primary strong {
+//     color: #fff;
+// }
 // .router-link-active {
 //     background: #39f;
 //     color: #fff;

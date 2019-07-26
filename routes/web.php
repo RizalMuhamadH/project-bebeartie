@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'Frontend\IndexController@index');
+// Route::get('{path}', 'IndexController@index')->where('path','([A-z\d\/_.]+)?');
 
 Auth::routes();
 

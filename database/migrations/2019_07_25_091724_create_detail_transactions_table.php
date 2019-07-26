@@ -15,7 +15,14 @@ class CreateDetailTransactionsTable extends Migration
     {
         Schema::create('detail_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('quality');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('transaction_id');
             $table->timestamps();
+
+
+            $table->index('product_id');
+            $table->index('transaction_id');
         });
     }
 

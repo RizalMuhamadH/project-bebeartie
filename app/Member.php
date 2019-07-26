@@ -26,8 +26,8 @@ class Member extends Authenticatable
         return $this->attributes['password'] = bcrypt($val);
     }
 
-    public function basket()
+    public function cart()
     {
-        return $this->belongsTo(Basket::class);
+        return $this->belongsTo(Cart::class);
     }
 }

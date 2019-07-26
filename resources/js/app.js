@@ -9,9 +9,11 @@ import { Form, HasError, AlertError } from 'vform';
 import VueProgressBar from 'vue-progressbar';
 import Swal from 'sweetalert2';
 import Tinymce from 'vue-tinymce-editor';
+import VueCarousel from '@chenfengyuan/vue-carousel';
 
 
 require('./bootstrap');
+
 
 window.Vue = require('vue');
 
@@ -32,6 +34,8 @@ window.Form = Form;
 Vue.component(HasError.name, HasError);
 Vue.component(AlertError.name, AlertError);
 
+Vue.component(VueCarousel.name, VueCarousel);
+
 
 Vue.use(VueProgressBar, {
     color: 'rgb(143, 255, 199)',
@@ -51,6 +55,7 @@ Vue.use(VueProgressBar, {
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('Home', require('./components/frontend/Home.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('Tinymce', Tinymce);
 

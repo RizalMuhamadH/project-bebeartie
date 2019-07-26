@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class List_item extends Model
 {
-    public function basket()
+    public function cart()
     {
-        return $this->belongsTo(Basket::class);
+        return $this->belongsTo(Cart::class);
     }
 
     public function product()
