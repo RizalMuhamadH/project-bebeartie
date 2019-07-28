@@ -10,6 +10,9 @@ import VueProgressBar from 'vue-progressbar';
 import Swal from 'sweetalert2';
 import Tinymce from 'vue-tinymce-editor';
 import VueCarousel from '@chenfengyuan/vue-carousel';
+// import BootstrapVue from 'bootstrap-vue';
+
+// Vue.use(BootstrapVue);
 
 
 require('./bootstrap');
@@ -102,6 +105,16 @@ const routes = [{
         path: '/members',
         name: 'memberIndex',
         component: require('./components/organization/member/Index.vue').default
+    },
+    {
+        path: '/front',
+        name: 'frontIndex',
+        component: require('./components/frontend/Front.vue').default
+    },
+    {
+        path: '/category',
+        name: 'ctegoryIndex',
+        component: require('./components/frontend/Category.vue').default
     },
 ]
 

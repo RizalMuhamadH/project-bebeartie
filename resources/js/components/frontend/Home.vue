@@ -1,59 +1,112 @@
 <template>
   <div>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
-        </a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <a
-          role="button"
-          class="navbar-burger burger"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <router-link to="/front" class="nav-link" href="#">
+              Home
+              <span class="sr-only">(current)</span>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >Dropdown</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          </li>
+        </ul>
+        <!-- Cart & Search -->
+        <div class="header-xtra pull-right form-inline">
+          <div class="topcart">
+            <span>
+              <i class="fa fa-shopping-cart"></i>
+            </span>
+            <div class="cart-info">
+              <small>
+                You have
+                <em class="highlight">3 item(s)</em> in your shopping bag
+              </small>
+              <div class="ci-item">
+                <img src="images/products/fashion/8.jpg" width="80" alt />
+                <div class="ci-item-info">
+                  <h5>
+                    <a href="./single-product.html">Product fashion</a>
+                  </h5>
+                  <p>2 x $250.00</p>
+                  <div class="ci-edit">
+                    <a href="#" class="edit fa fa-edit"></a>
+                    <a href="#" class="edit fa fa-trash"></a>
+                  </div>
+                </div>
+              </div>
+              <div class="ci-item">
+                <img src="images/products/fashion/15.jpg" width="80" alt />
+                <div class="ci-item-info">
+                  <h5>
+                    <a href="./single-product.html">Product fashion</a>
+                  </h5>
+                  <p>2 x $250.00</p>
+                  <div class="ci-edit">
+                    <a href="#" class="edit fa fa-edit"></a>
+                    <a href="#" class="edit fa fa-trash"></a>
+                  </div>
+                </div>
+              </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item">Home</a>
-
-          <a class="navbar-item">Documentation</a>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">More</a>
-
-            <div class="navbar-dropdown">
-              <a class="navbar-item">About</a>
-              <a class="navbar-item">Jobs</a>
-              <a class="navbar-item">Contact</a>
-              <hr class="navbar-divider" />
-              <a class="navbar-item">Report an issue</a>
+              <div class="ci-total">Subtotal: $750.00</div>
+              <div class="cart-btn">
+                <a href="#">View Bag</a>
+                <a href="#">Checkout</a>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a class="button is-light">Log in</a>
-            </div>
+          <div class="topsearch">
+            <span>
+              <i class="fa fa-search"></i>
+            </span>
+            <form class="searchtop">
+              <input type="text" placeholder="Search entire store here." />
+            </form>
           </div>
         </div>
       </div>
     </nav>
-    <!-- Start Hero Carousel -->
-    <carousel :data="slide" indicators="hover"></carousel>
-    <!-- End Hero Carousel -->
-    <div class="container is-fluid"></div>
+    <!-- </header> -->
+    <!-- </header> -->
+    <div class="is-fluid">
+      <router-view></router-view>
+    </div>
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
@@ -72,12 +125,15 @@
 <script>
 export default {
   data() {
-    return {
-      slide: [
-        '<div class="example-slide"><figure class="image"><img src="/storage/photo/15638801280.jpeg" /></figure></div>',
-        '<div class="example-slide"><figure class="image"><img src="/storage/photo/15638801280.jpeg" /></figure></div>'
-      ]
-    };
+    return {};
+  },
+  created() {
+    this.load();
+  },
+  methods: {
+    load() {
+      this.$router.push("/front");
+    }
   }
 };
 </script>

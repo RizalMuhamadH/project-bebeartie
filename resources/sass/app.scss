@@ -3,15 +3,30 @@
 // Variables
 @import 'variables';
 // Bulma
-@import '~bulma/bulma';
+// @import '~bulma/bulma';
 // Bulma
-@import "node_modules/bulma-extensions/bulma-carousel/dist/css/bulma-carousel.min";
+// @import "node_modules/bulma-extensions/bulma-carousel/dist/css/bulma-carousel.min";
 // Bootstrap
-// @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap/scss/bootstrap';
+// Bootstrap
+// @import 'node_modules/bootstrap-vue/src/index.scss';
 .router-link-exact-active {
     background: #39f;
     color: #fff;
     text-shadow: none;
+}
+
+li.nav-item a.nav-link.router-link-exact-active {
+    color: #d89522;
+    background: #fff;
+}
+
+.navbar-cos {
+    background: rgba(217, 198, 146, 0.6);
+}
+
+.navbar-cos .navbar-brand {
+    color: #553805;
 }
 
 // .is-primary strong {
