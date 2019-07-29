@@ -1,8 +1,8 @@
 <template>
   <div>
 
-    <!-- <header> -->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <header id="header3">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
         <button
           class="navbar-toggler"
@@ -104,7 +104,7 @@
           </div>
         </div>
       </nav>
-    <!-- </header> -->
+    </header>
     <!-- </header> -->
     <div class="is-fluid">
       <router-view></router-view>
