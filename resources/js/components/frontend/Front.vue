@@ -1,7 +1,225 @@
 <template>
   <div class="body">
     <!-- Start Hero Carousel -->
-    <carousel :data="slide" indicators="hover"></carousel>
+    <!-- SLIDER -->
+    <div class="slider-wrap">
+      <div class="tp-banner-container">
+        <div class="tp-banner">
+          <ul>
+            <!-- SLIDE  -->
+            <li
+              data-transition="fade"
+              data-slotamount="2"
+              data-masterspeed="500"
+              data-thumb="homeslider_thumb1.jpg"
+              data-saveperformance="on"
+              data-title="Intro Slide"
+            >
+              <!-- MAIN IMAGE -->
+              <img
+                src="design/images/dummy.png"
+                alt="slidebg1"
+                data-lazyload="images/slides/2.jpg"
+                data-bgposition="center top"
+                data-bgfit="cover"
+                data-bgrepeat="no-repeat"
+              />
+              <!-- LAYERS -->
+              <div
+                class="tp-caption customin fadeout tp-resizeme rs-parallaxlevel-10"
+                data-x="center"
+                data-y="center"
+                data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                data-speed="800"
+                data-start="1000"
+                data-easing="Power3.easeInOut"
+                data-splitin="none"
+                data-splitout="none"
+                data-elementdelay="0.1"
+                data-endelementdelay="0.1"
+                data-end="7300"
+                data-endspeed="300"
+                style="z-index: 2; max-width: 630px; max-height: 250px; background:#fff;width:100%;height:100%; white-space: nowrap;"
+              ></div>
+              <!-- LAYER NR. 2 -->
+              <div
+                class="tp-caption lft skewtoleftshort rs-parallaxlevel-9"
+                data-x="center"
+                data-y="250"
+                data-speed="1000"
+                data-start="1400"
+                data-easing="Power3.easeInOut"
+                data-elementdelay="0.1"
+                data-endelementdelay="0.1"
+                data-end="7300"
+                data-endspeed="1000"
+                style="z-index: 3; max-width: auto; max-height: auto; white-space: nowrap;font-family: Raleway;
+                                     font-size: 36px;
+                                     font-weight: bold;
+                                     text-transform: uppercase;	color: #343434;"
+              >
+                Amazing
+                <span class="ss-color" style="color:#d6644a;">Outlet</span>
+              </div>
+              <div
+                class="tp-caption lft skewtoleftshort rs-parallaxlevel-9"
+                data-x="center"
+                data-y="310"
+                data-speed="1000"
+                data-start="1800"
+                data-easing="Power3.easeInOut"
+                data-elementdelay="0.1"
+                data-endelementdelay="0.1"
+                data-end="7300"
+                data-endspeed="1000"
+                style="z-index: 3; max-width: auto; max-height: auto; white-space: nowrap;	font-family: Raleway;
+                                     font-size: 18px;
+                                     color: #333;text-align:center;"
+              >
+                Clean & Elegant design with a modern style. This template includes
+                <br />all you need for a fashion & accessories store
+              </div>
+              <div
+                class="tp-caption lft skewtoleftshort rs-parallaxlevel-9"
+                data-x="center"
+                data-y="375"
+                data-speed="1000"
+                data-start="2200"
+                data-easing="Power3.easeInOut"
+                data-elementdelay="0.1"
+                data-endelementdelay="0.1"
+                data-end="7300"
+                data-endspeed="1000"
+                style="z-index: 3; max-width: 80px; max-height: 4px; width:100%;height:100%;background:#000000;"
+              ></div>
+              <a
+                href="./categories-grid.html"
+                class="tp-caption lft skewtoleftshort rs-parallaxlevel-9"
+                data-x="center"
+                data-y="395"
+                data-speed="1000"
+                data-start="2600"
+                data-easing="Power3.easeInOut"
+                data-elementdelay="0.1"
+                data-endelementdelay="0.1"
+                data-end="7300"
+                data-endspeed="1000"
+                style="z-index: 3; max-height:100%;line-height:43px;color:#fff;font-family: Montserrat;
+                                   font-size: 12px;
+                                   display:table;
+                                   font-weight: bold;
+                                   text-transform:uppercase;padding:0 40px;background:#000000;position:relative;z-index:77;"
+              >Shop Now !</a>
+            </li>
+            <li
+              data-transition="fade"
+              data-slotamount="2"
+              data-masterspeed="500"
+              data-thumb="homeslider_thumb1.jpg"
+              data-saveperformance="on"
+              data-title="Intro Slide"
+            >
+              <!-- MAIN IMAGE -->
+              <img
+                src="design/images/dummy.png"
+                alt="slidebg1"
+                data-lazyload="images/slides/1.jpg"
+                data-bgposition="center top"
+                data-bgfit="cover"
+                data-bgrepeat="no-repeat"
+              />
+              <!-- LAYERS -->
+              <div
+                class="tp-caption customin fadeout tp-resizeme rs-parallaxlevel-10"
+                data-x="center"
+                data-y="center"
+                data-customin="x:0;y:0;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0;scaleY:0;skewX:0;skewY:0;opacity:0;transformPerspective:600;transformOrigin:50% 50%;"
+                data-speed="800"
+                data-start="1000"
+                data-easing="Power3.easeInOut"
+                data-splitin="none"
+                data-splitout="none"
+                data-elementdelay="0.1"
+                data-endelementdelay="0.1"
+                data-end="7300"
+                data-endspeed="300"
+                style="z-index: 2; max-width: 630px; max-height: 250px; background:#fff;width:100%;height:100%; white-space: nowrap;"
+              ></div>
+              <!-- LAYER NR. 2 -->
+              <div
+                class="tp-caption lft skewtoleftshort rs-parallaxlevel-9"
+                data-x="center"
+                data-y="250"
+                data-speed="1000"
+                data-start="1400"
+                data-easing="Power3.easeInOut"
+                data-elementdelay="0.1"
+                data-endelementdelay="0.1"
+                data-end="7300"
+                data-endspeed="1000"
+                style="z-index: 3; max-width: auto; max-height: auto; white-space: nowrap;font-family: Raleway;
+                                     font-size: 36px;
+                                     font-weight: bold;
+                                     text-transform: uppercase;	color: #343434;"
+              >
+                Women
+                <span class="ss-color" style="color:#d6644a;">Clothing</span>
+              </div>
+              <div
+                class="tp-caption lft skewtoleftshort rs-parallaxlevel-9"
+                data-x="center"
+                data-y="310"
+                data-speed="1000"
+                data-start="1800"
+                data-easing="Power3.easeInOut"
+                data-elementdelay="0.1"
+                data-endelementdelay="0.1"
+                data-end="7300"
+                data-endspeed="1000"
+                style="z-index: 3; max-width: auto; max-height: auto; white-space: nowrap;	font-family: Raleway;
+                                     font-size: 18px;
+                                     color: #333;text-align:center;"
+              >
+                Clean & Elegant design with a modern style. This template includes
+                <br />all you need for a fashion & accessories store
+              </div>
+              <div
+                class="tp-caption lft skewtoleftshort rs-parallaxlevel-9"
+                data-x="center"
+                data-y="375"
+                data-speed="1000"
+                data-start="2200"
+                data-easing="Power3.easeInOut"
+                data-elementdelay="0.1"
+                data-endelementdelay="0.1"
+                data-end="7300"
+                data-endspeed="1000"
+                style="z-index: 3; max-width: 80px; max-height: 4px; width:100%;height:100%;background:#000000;"
+              ></div>
+              <a
+                href="./categories-grid.html"
+                class="tp-caption lft skewtoleftshort rs-parallaxlevel-9"
+                data-x="center"
+                data-y="395"
+                data-speed="1000"
+                data-start="2600"
+                data-easing="Power3.easeInOut"
+                data-elementdelay="0.1"
+                data-endelementdelay="0.1"
+                data-end="7300"
+                data-endspeed="1000"
+                style="z-index: 3; max-height:100%;line-height:43px;color:#fff;font-family: Montserrat;
+                                   font-size: 12px;
+                                   display:table;
+                                   font-weight: bold;
+                                   text-transform:uppercase;padding:0 40px;background:#000000;position:relative;z-index:77;"
+              >Shop Now !</a>
+            </li>
+          </ul>
+          <div class="tp-bannertimer"></div>
+        </div>
+      </div>
+    </div>
     <!-- End Hero Carousel -->
     <div class="clearfix"></div>
     <!-- FEATURED PRODUCTS -->
@@ -11,227 +229,35 @@
           <h5 class="heading space40">
             <span>Latest Products</span>
           </h5>
-          <div id="isotope" class="isotope">
-            <div class="row">
-              <div class="isotope-item clothing">
-                <div class="product-item">
-                  <div class="item-thumb">
-                    <div class="badge new">New</div>
-                    <img
-                      src="storage/photo/15638801280.jpeg"
-                      class="img-responsive img-thumbnail"
-                      alt
-                    />
-                    <div
-                      class="overlay-rmore fa fa-search quickview"
-                      data-toggle="modal"
-                      data-target="#myModal"
-                    ></div>
-                    <div class="product-overlay">
-                      <a href="#" class="addcart fa fa-shopping-cart"></a>
-                      <a href="#" class="compare fa fa-signal"></a>
-                      <a href="#" class="likeitem fa fa-heart-o"></a>
-                    </div>
+          <div class="row">
+            <div class="col-md-4 col-sm-6" v-for="item in products" :key="item.id">
+              <div class="product-item">
+                <div class="item-thumb">
+                  <span class="badge new">New</span>
+                  <img :src="item.image_thumb" class="img-responsive" alt />
+                  <div @click="showDetails(item)">
+                    <i class="overlay-rmore fa fa-search quickview"></i>
                   </div>
-                  <div class="product-info">
-                    <h4 class="product-title">
-                      <a href="./single-product.html">Product fashion</a>
-                    </h4>
-                    <span class="product-price">
-                      $99.00
-                      <em>- Pre order</em>
-                    </span>
-                    <div class="item-colors">
-                      <a href="#" class="black"></a>
-                      <a href="#" class="brown"></a>
-                      <a href="#" class="red"></a>
-                    </div>
+                  <div class="product-overlay">
+                    <a href="#" class="addcart fa fa-shopping-cart"></a>
+                    <a href="#" class="compare fa fa-signal"></a>
+                    <a href="#" class="likeitem fa fa-heart-o"></a>
                   </div>
                 </div>
-              </div>
-
-              <div class="isotope-item clothing">
-                <div class="product-item">
-                  <div class="item-thumb">
-                    <div class="badge new">New</div>
-                    <img
-                      src="storage/photo/15638801280.jpeg"
-                      class="img-responsive img-thumbnail"
-                      alt
-                    />
-                    <div
-                      class="overlay-rmore fa fa-search quickview"
-                      data-toggle="modal"
-                      data-target="#myModal"
-                    ></div>
-                    <div class="product-overlay">
-                      <a href="#" class="addcart fa fa-shopping-cart"></a>
-                      <a href="#" class="compare fa fa-signal"></a>
-                      <a href="#" class="likeitem fa fa-heart-o"></a>
-                    </div>
-                  </div>
-                  <div class="product-info">
-                    <h4 class="product-title">
-                      <a href="./single-product.html">Product fashion</a>
-                    </h4>
-                    <span class="product-price">
-                      $99.00
-                      <em>- Pre order</em>
-                    </span>
-                    <div class="item-colors">
-                      <a href="#" class="black"></a>
-                      <a href="#" class="brown"></a>
-                      <a href="#" class="red"></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="isotope-item clothing">
-                <div class="product-item">
-                  <div class="item-thumb">
-                    <div class="badge new">New</div>
-                    <img
-                      src="storage/photo/15638801280.jpeg"
-                      class="img-responsive img-thumbnail"
-                      alt
-                    />
-                    <div
-                      class="overlay-rmore fa fa-search quickview"
-                      data-toggle="modal"
-                      data-target="#myModal"
-                    ></div>
-                    <div class="product-overlay">
-                      <a href="#" class="addcart fa fa-shopping-cart"></a>
-                      <a href="#" class="compare fa fa-signal"></a>
-                      <a href="#" class="likeitem fa fa-heart-o"></a>
-                    </div>
-                  </div>
-                  <div class="product-info">
-                    <h4 class="product-title">
-                      <a href="./single-product.html">Product fashion</a>
-                    </h4>
-                    <span class="product-price">
-                      $99.00
-                      <em>- Pre order</em>
-                    </span>
-                    <div class="item-colors">
-                      <a href="#" class="black"></a>
-                      <a href="#" class="brown"></a>
-                      <a href="#" class="red"></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="isotope-item clothing">
-                <div class="product-item">
-                  <div class="item-thumb">
-                    <div class="badge new">New</div>
-                    <img
-                      src="storage/photo/15638801280.jpeg"
-                      class="img-responsive img-thumbnail"
-                      alt
-                    />
-                    <div
-                      class="overlay-rmore fa fa-search quickview"
-                      data-toggle="modal"
-                      data-target="#myModal"
-                    ></div>
-                    <div class="product-overlay">
-                      <a href="#" class="addcart fa fa-shopping-cart"></a>
-                      <a href="#" class="compare fa fa-signal"></a>
-                      <a href="#" class="likeitem fa fa-heart-o"></a>
-                    </div>
-                  </div>
-                  <div class="product-info">
-                    <h4 class="product-title">
-                      <a href="./single-product.html">Product fashion</a>
-                    </h4>
-                    <span class="product-price">
-                      $99.00
-                      <em>- Pre order</em>
-                    </span>
-                    <div class="item-colors">
-                      <a href="#" class="black"></a>
-                      <a href="#" class="brown"></a>
-                      <a href="#" class="red"></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="isotope-item clothing">
-                <div class="product-item">
-                  <div class="item-thumb">
-                    <div class="badge new">New</div>
-                    <img
-                      src="storage/photo/15638801280.jpeg"
-                      class="img-responsive img-thumbnail"
-                      alt
-                    />
-                    <div
-                      class="overlay-rmore fa fa-search quickview"
-                      data-toggle="modal"
-                      data-target="#myModal"
-                    ></div>
-                    <div class="product-overlay">
-                      <a href="#" class="addcart fa fa-shopping-cart"></a>
-                      <a href="#" class="compare fa fa-signal"></a>
-                      <a href="#" class="likeitem fa fa-heart-o"></a>
-                    </div>
-                  </div>
-                  <div class="product-info">
-                    <h4 class="product-title">
-                      <a href="./single-product.html">Product fashion</a>
-                    </h4>
-                    <span class="product-price">
-                      $99.00
-                      <em>- Pre order</em>
-                    </span>
-                    <div class="item-colors">
-                      <a href="#" class="black"></a>
-                      <a href="#" class="brown"></a>
-                      <a href="#" class="red"></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="isotope-item clothing">
-                <div class="product-item">
-                  <div class="item-thumb">
-                    <div class="badge new">New</div>
-                    <img
-                      src="storage/photo/15638801280.jpeg"
-                      class="img-responsive img-thumbnail"
-                      alt
-                    />
-                    <div
-                      class="overlay-rmore fa fa-search quickview"
-                      data-toggle="modal"
-                      data-target="#myModal"
-                    ></div>
-                    <div class="product-overlay">
-                      <a href="#" class="addcart fa fa-shopping-cart"></a>
-                      <a href="#" class="compare fa fa-signal"></a>
-                      <a href="#" class="likeitem fa fa-heart-o"></a>
-                    </div>
-                  </div>
-                  <div class="product-info">
-                    <h4 class="product-title">
-                      <a href="./single-product.html">Product fashion</a>
-                    </h4>
-                    <span class="product-price">
-                      $99.00
-                      <em>- Pre order</em>
-                    </span>
-                    <div class="item-colors">
-                      <a href="#" class="black"></a>
-                      <a href="#" class="brown"></a>
-                      <a href="#" class="red"></a>
-                    </div>
-                  </div>
+                <div class="product-info">
+                  <h4 class="product-title">
+                    <a href="#">{{ item.name }}</a>
+                  </h4>
+                  <span class="product-price">
+                    {{ item.price | currency }}
+                    <em v-if="item.status == 'Y'">- Sale</em>
+                    <em v-else>- On Sold</em>
+                  </span>
+                  <!-- <div class="item-colors">
+                    <a href="#" class="litebrown"></a>
+                    <a href="#" class="white"></a>
+                    <a href="#" class="red"></a>
+                  </div>-->
                 </div>
               </div>
             </div>
@@ -249,109 +275,28 @@
           </button>
           <div class="row">
             <div class="col-md-5 col-sm-6">
-              <div class="owl-carousel sync1">
-                <div class="item">
-                  <img src="design/images/products/single/1.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/2.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/3.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/4.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/1.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/2.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/3.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/4.jpg" alt />
-                </div>
-              </div>
-
-              <div class="owl-carousel sync2">
-                <div class="item">
-                  <img src="design/images/products/single/1.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/2.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/3.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/4.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/1.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/2.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/3.jpg" alt />
-                </div>
-                <div class="item">
-                  <img src="design/images/products/single/4.jpg" alt />
-                </div>
+              <div>
+                <carousel :data="slide"></carousel>
               </div>
             </div>
             <div class="col-md-7 col-sm-6">
               <div class="product-single">
                 <div class="ps-header">
-                  <span class="badge offer">-50%</span>
-                  <h3>Product fashion</h3>
-                  <div class="ratings-wrap">
-                    <div class="ratings">
-                      <span class="act fa fa-star"></span>
-                      <span class="act fa fa-star"></span>
-                      <span class="act fa fa-star"></span>
-                      <span class="act fa fa-star"></span>
-                      <span class="act fa fa-star"></span>
-                    </div>
-                    <em>(6 reviews)</em>
-                  </div>
+                  <!-- <span class="badge offer">-50%</span> -->
+                  <h3>{{ object.name }}</h3>
                   <div class="ps-price">
-                    <span>$ 200.00</span> $ 99.00
+                    <!-- <span>$ 200.00</span>  -->
+                    {{ object.price | currency }}
                   </div>
                 </div>
 
                 <div class="ps-stock">
-                  Available:
-                  <a href="#">In Stock</a>
+                  Stock:
+                  {{ object.stock }}
                 </div>
                 <div class="sep"></div>
-                <div class="ps-color">
-                  <p>
-                    Color
-                    <span>*</span>
-                  </p>
-                  <a class="black" href="#" onclick="return false;"></a>
-                  <a class="red" href="#" onclick="return false;"></a>
-                  <a class="yellow" href="#" onclick="return false;"></a>
-                  <a class="darkgrey" href="#" onclick="return false;"></a>
-                  <a class="litebrown" href="#" onclick="return false;"></a>
-                </div>
                 <div class="space10"></div>
                 <div class="row select-wraps">
-                  <div class="col-md-7 col-sm-7">
-                    <p>
-                      Size
-                      <span>*</span>
-                    </p>
-                    <select>
-                      <option>XL</option>
-                      <option>XXL</option>
-                      <option>XXXL</option>
-                    </select>
-                  </div>
                   <div class="col-md-5 col-sm-5">
                     <p>
                       Quantity
@@ -367,17 +312,19 @@
                   </div>
                 </div>
                 <div class="space20"></div>
+                <div class="space20"></div>
+                <div class="space20"></div>
                 <div class="share">
-                  <span>
+                  <!-- <span>
                     <a href="#" class="fa fa-heart-o" onclick="return false;"></a>
                     <a href="#" class="fa fa-signal" onclick="return false;"></a>
                     <a href="#" class="fa fa-envelope-o" onclick="return false;"></a>
-                  </span>
+                  </span> -->
                   <div class="addthis_native_toolbox"></div>
                 </div>
                 <div class="space20"></div>
                 <div class="sep"></div>
-                <a class="btn-color" href="#">Add to Bag</a>
+                <a class="btn-color" @click="addCart()" href="#">Add to Bag</a>
                 <a class="btn-black" href="#">Go to Details</a>
               </div>
             </div>
@@ -389,13 +336,61 @@
 </template>
 <script>
 export default {
+  props: {
+    counter: {
+      type: Number,
+      required: true
+    },
+    stat: {
+      type: Boolean,
+      required: true
+    }
+  },
   data() {
     return {
-      slide: [
-        '<img class="img-fluid" alt="Responsive image" src="/storage/photo/156395114040.jpeg" />',
-        '<img class="img-fluid" alt="Responsive image" src="/storage/photo/156395114040.jpeg" />'
-      ]
+      products: {},
+      object: {},
+      slide: []
     };
+  },
+  created() {
+    this.loadPage();
+  },
+  methods: {
+    showDetails(item) {
+      //   console.log(item);
+      this.object = item;
+
+      var photo = [];
+      for (let i = 0; i < this.object.media.length; i++) {
+        photo[i] =
+          '<img class="img-fluid" alt="Responsive image" src="' +
+          this.object.media[i].path +
+          '" />';
+      }
+      this.slide = photo;
+      console.log(this.slide);
+
+      $("#myModal").modal("show");
+      //   $(".modal-backdrop").remove();
+    },
+    loadPage() {
+      this.$Progress.start();
+      axios
+        .get("/frontend/getProductLimit")
+        .then(res => {
+          this.products = res.data;
+          this.$Progress.finish();
+        })
+        .catch(err => {
+          this.$Progress.fail();
+          console.error(err);
+          Swal.fire("Failed!", "There was something wrong.", "warning");
+        });
+    },
+    addCart() {
+      this.$emit("addCart", 1);
+    }
   }
 };
 </script>

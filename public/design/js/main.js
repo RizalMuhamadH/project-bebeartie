@@ -118,10 +118,10 @@ $(document).ready(function() {
     });
 
     // SUBSCRIBE NEWSLETTER
-    $(".subscribe-me").subscribeBetter({
-        trigger: "onload",
-        delay: 300
-    });
+    // $(".subscribe-me").subscribeBetter({
+    //     trigger: "onload",
+    //     delay: 300
+    // });
 
     // PRODUCTS CAROUSEL
     $('.product-carousel').slick({
@@ -552,38 +552,38 @@ $(".nav-trigger").on("click", function() {
 });
 
 // FEATURED PRODUCTS
-$(window).load(function() {
-    "use strict";
-    //    $('.modal.fade.in #popup-product').royalSlider("updateSliderSize", true);
-    /* Loading Script */
-    $('#loader').fadeOut("slow");
+// $(window).load(function() {
+//     "use strict";
+//     //    $('.modal.fade.in #popup-product').royalSlider("updateSliderSize", true);
+//     /* Loading Script */
+//     $('#loader').fadeOut("slow");
 
-    // Isotope
-    var $container = $('#isotope');
-    $container.isotope({
-        itemSelector: '.isotope-item'
-    });
-    var $optionSets = $('.filter'),
-        $optionLinks = $optionSets.find('a');
-    $optionLinks.click(function() {
-        var $this = $(this);
-        if ($this.hasClass('selected')) {
-            return false;
-        }
-        var $optionSet = $this.parents('.filter');
-        $optionSet.find('.selected').removeClass('selected');
-        $this.addClass('selected');
-        var options = {},
-            key = $optionSet.attr('data-option-key'),
-            value = $this.attr('data-option-value');
-        value = value === 'false' ? false : value;
-        options[key] = value;
-        if (key === 'layoutMode' && typeof changeLayoutMode === 'function') {
-            changeLayoutMode($this, options);
-        } else {
-            $container.isotope(options);
-        }
-        return false;
-    });
+//     // Isotope
+//     var $container = $('#isotope');
+//     $container.isotope({
+//         itemSelector: '.isotope-item'
+//     });
+//     var $optionSets = $('.filter'),
+//         $optionLinks = $optionSets.find('a');
+//     $optionLinks.click(function() {
+//         var $this = $(this);
+//         if ($this.hasClass('selected')) {
+//             return false;
+//         }
+//         var $optionSet = $this.parents('.filter');
+//         $optionSet.find('.selected').removeClass('selected');
+//         $this.addClass('selected');
+//         var options = {},
+//             key = $optionSet.attr('data-option-key'),
+//             value = $this.attr('data-option-value');
+//         value = value === 'false' ? false : value;
+//         options[key] = value;
+//         if (key === 'layoutMode' && typeof changeLayoutMode === 'function') {
+//             changeLayoutMode($this, options);
+//         } else {
+//             $container.isotope(options);
+//         }
+//         return false;
+//     });
 
-});
+// });

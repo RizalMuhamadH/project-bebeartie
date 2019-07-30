@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Product;
 
 class IndexController extends Controller
 {
@@ -81,5 +82,10 @@ class IndexController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getProductLimit()
+    {
+        return Product::with('promote')->with('category')->with('media')->latest()->limit(9)->get();
     }
 }

@@ -17,6 +17,8 @@ Auth::routes();
 
 Route::get('/api/other', 'OtherController@index');
 
+Route::get('/frontend/getProductLimit', 'Frontend\IndexController@getProductLimit');
+
 Route::get('/api/categories', 'CategoryController@index');
 Route::post('/api/category', 'CategoryController@store');
 Route::put('/api/category/{id}', 'CategoryController@update');

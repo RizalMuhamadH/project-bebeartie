@@ -30,14 +30,6 @@
     <!-- <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css"> -->
     <!-- Google Font: Source Sans Pro -->
 
-    <link rel="stylesheet" href="{{ asset('design/js/vendors/isotope/isotope.css') }}">
-    <link rel="stylesheet" href="{{ asset('design/js/vendors/slick/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('design/js/vendors/rs-plugin/css/settings.css') }}">
-    <link rel="stylesheet" href="{{ asset('design/js/vendors/select/jquery.selectBoxIt.css') }}">
-    <link rel="stylesheet" href="{{ asset('design/css/subscribe-better.css') }}">
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css">
-    <link rel="stylesheet" href="{{ asset('design/plugin/owl-carousel/owl.carousel.css') }}">
-    <link rel="stylesheet" href="{{ asset('design/plugin/owl-carousel/owl.theme.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
@@ -75,22 +67,6 @@
     </div>
     <!-- ./wrapper -->
 
-
-
-    <!-- Javascript -->
-    {{-- <script src="{{ asset('design/js/jquery.js') }}"></script> --}}
-    <script type="text/javascript" src="{{ asset('design/plugin/owl-carousel/owl.carousel.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('design/js/bs-navbar.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('design/js/vendors/isotope/isotope.pkgd.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('design/js/vendors/slick/slick.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('design/js/vendors/tweets/tweecool.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('design/js/vendors/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('design/js/vendors/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('design/js/jquery.sticky.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('design/js/jquery.subscribe-better.js') }}"></script>
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="{{ asset('design/js/vendors/select/jquery.selectBoxIt.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('design/js/main.js') }}"></script>
 
     <script src="{{ asset('js/app.js') }}"></script>
     <!-- jQuery -->

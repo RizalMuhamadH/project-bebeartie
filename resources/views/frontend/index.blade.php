@@ -9,6 +9,8 @@
     <!-- <link rel="stylesheet/sass" href="{{ asset('bulma/bulma.sass') }}" /> -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+
+
     <!-- Google Webfont -->
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900' rel='stylesheet'
         type='text/css'>
@@ -20,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('design/css/style.css') }}">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{{ asset('design/css/font-awesome/css/font-awesome.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('design/css/font-awesome/css/font-awesome.css') }}"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('design/css/bootstrap.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('design/js/vendors/isotope/isotope.css') }}">
     <link rel="stylesheet" href="{{ asset('design/js/vendors/slick/slick.css') }}">
@@ -42,6 +44,8 @@
 
 <script src="{{ asset('js/app.js') }}"></script>
 
+<!-- jQuery -->
+{{-- <script src="{{ asset('lte/plugins/jquery/jquery.min.js') }}"></script> --}}
 <!-- Javascript -->
 {{-- <script src="{{ asset('design/js/jquery.js') }}"></script> --}}
 {{-- <script src="{{ asset('design/js/bootstrap.min.js') }}"></script> --}}
@@ -59,5 +63,21 @@
 <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <script type="text/javascript" src="{{ asset('design/js/vendors/select/jquery.selectBoxIt.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('design/js/main.js') }}"></script>
+{{-- <script>
+    var nav = document.getElementById('nav');
+    window.onscroll = function(){
+        if(window.pageYOffset > 100){
+            nav.style.top = "0px";
+            nav.style.position = "fixed";
+            nav.style.backgroundColor= "#0a2b4d"
+            nav.style.width = "100%";
+        } else {
+            nav.style.top = "50px";
+            nav.style.position = "absolute";
+            nav.style.backgroundColor= "rgba(10, 44, 78, 0.4)"
+            nav.style.width = "100%";
+        }
+    }
+</script> --}}
 
 </html>

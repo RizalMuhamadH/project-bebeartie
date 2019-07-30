@@ -36,6 +36,14 @@ Author: JTHEMES
 
 /* 1. GLOBAL STYLES */
 
+.img-responsive,
+.thumbnail a>img,
+.thumbnail>img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
 body {
     font-family: 'Raleway', sans-serif;
     font-size: 13px;
@@ -1415,6 +1423,10 @@ footer {
 
 .tb_left {
     padding: 8px 0;
+}
+
+.pull-left {
+    float: left !important;
 }
 
 .tb_center {

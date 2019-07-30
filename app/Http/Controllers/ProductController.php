@@ -112,7 +112,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = findOrFail($id)->get();
+        $product = Product::findOrFail($id)->get();
         $data = request()->validate([
             'name' => 'required',
             'price' => 'required|integer',
@@ -125,10 +125,12 @@ class ProductController extends Controller
             'promote_id' => 'required',
         ]);
 
-        if ($data['image_thumb'] != $product->image_thumb) {
-            $name = time() . '.' . explode('/', explode(':', substr(request()->image_thumb, 0, strpos(request()->image_thumb, ';')))[1])[1];
-            Image::make(request()->image_thumb)->save(public_path('storage/thumb/') . $name);
-            $data['image_thumb'] = 'storage/thumb/' . $name;
+        if (request()->photo != null) {
+            if ($data['image_thumb'] != $product->image_thumb) {
+                $name = time() . '.' . explode('/', explode(':', substr(request()->image_thumb, 0, strpos(request()->image_thumb, ';')))[1])[1];
+                Image::make(request()->image_thumb)->save(public_path('storage/thumb/') . $name);
+                $data['image_thumb'] = 'storage/thumb/' . $name;
+            }
         }
 
         Product::where('id', $id)->update(array_merge($data));

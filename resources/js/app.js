@@ -10,10 +10,7 @@ import VueProgressBar from 'vue-progressbar';
 import Swal from 'sweetalert2';
 import Tinymce from 'vue-tinymce-editor';
 import VueCarousel from '@chenfengyuan/vue-carousel';
-// import BootstrapVue from 'bootstrap-vue';
-
-// Vue.use(BootstrapVue);
-
+import VueCurrencyFilter from 'vue-currency-filter';
 
 require('./bootstrap');
 
@@ -44,6 +41,15 @@ Vue.use(VueProgressBar, {
     color: 'rgb(143, 255, 199)',
     failedColor: 'red',
     height: '2px'
+});
+
+Vue.use(VueCurrencyFilter, {
+    symbol: 'Rp',
+    thousandsSeparator: '.',
+    fractionCount: 2,
+    fractionSeparator: ',',
+    symbolPosition: 'front',
+    symbolSpacing: true
 });
 
 /**
