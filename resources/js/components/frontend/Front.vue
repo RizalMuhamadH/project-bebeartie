@@ -19,7 +19,7 @@
               <img
                 src="design/images/dummy.png"
                 alt="slidebg1"
-                data-lazyload="images/slides/2.jpg"
+                data-lazyload="design/images/slides/2.jpg"
                 data-bgposition="center top"
                 data-bgfit="cover"
                 data-bgrepeat="no-repeat"
@@ -123,7 +123,7 @@
               <img
                 src="design/images/dummy.png"
                 alt="slidebg1"
-                data-lazyload="images/slides/1.jpg"
+                data-lazyload="design/images/slides/1.jpg"
                 data-bgposition="center top"
                 data-bgfit="cover"
                 data-bgrepeat="no-repeat"
