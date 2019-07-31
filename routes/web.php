@@ -17,7 +17,13 @@ Auth::routes();
 
 Route::get('/api/other', 'OtherController@index');
 
-Route::get('/frontend/getProductLimit', 'Frontend\IndexController@getProductLimit');
+Route::get('/frontend/getProductIndex', 'Frontend\ProductController@index');
+Route::get('/frontend/getProductDetail/{id}', 'Frontend\ProductController@show');
+Route::get('/frontend/getProductLimit', 'Frontend\ProductController@getProductLimit');
+Route::get('/frontend/getProductCategory/{id}', 'Frontend\ProductController@getProductCategory');
+
+
+Route::get('/frontend/getCategoryIndex', 'Frontend\CategoryController@index');
 
 Route::get('/api/categories', 'CategoryController@index');
 Route::post('/api/category', 'CategoryController@store');
@@ -42,7 +48,7 @@ Route::put('/api/product/{id}', 'ProductController@update');
 Route::delete('/api/product_delete/{id}', 'ProductController@destroy');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('{path?}', 'HomeController@index')->where('path','([A-z\d\/_.]+)?');
+Route::get('{path?}')->where('path','([A-z\d\/_.]+)?');
 
 
 

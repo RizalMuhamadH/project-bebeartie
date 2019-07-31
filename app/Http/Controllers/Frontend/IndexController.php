@@ -83,9 +83,4 @@ class IndexController extends Controller
     {
         //
     }
-
-    public function getProductLimit()
-    {
-        return Product::with('promote')->with('category')->with('media')->latest()->limit(9)->get();
-    }
 }

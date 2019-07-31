@@ -275,8 +275,34 @@
           </button>
           <div class="row">
             <div class="col-md-5 col-sm-6">
-              <div>
-                <carousel :data="slide"></carousel>
+              <!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" v-for="item in object.media.length" :key="item">
+                    <img class="d-block w-100" :src="object.media[item].path" alt="First slide" />
+                  </div>
+                </div>
+                <a
+                  class="carousel-control-prev"
+                  href="#carouselExampleControls"
+                  role="button"
+                  data-slide="prev"
+                >
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a
+                  class="carousel-control-next"
+                  href="#carouselExampleControls"
+                  role="button"
+                  data-slide="next"
+                >
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>-->
+              <div v-html="html">
+                  {{ html }}
+              <!-- <carousel :data="slide"></carousel> -->
               </div>
             </div>
             <div class="col-md-7 col-sm-6">
@@ -319,13 +345,13 @@
                     <a href="#" class="fa fa-heart-o" onclick="return false;"></a>
                     <a href="#" class="fa fa-signal" onclick="return false;"></a>
                     <a href="#" class="fa fa-envelope-o" onclick="return false;"></a>
-                  </span> -->
+                  </span>-->
                   <div class="addthis_native_toolbox"></div>
                 </div>
                 <div class="space20"></div>
                 <div class="sep"></div>
                 <a class="btn-color" @click="addCart()" href="#">Add to Bag</a>
-                <a class="btn-black" href="#">Go to Details</a>
+                <button @click="details()" class="btn-black">Go to Details</button>
               </div>
             </div>
           </div>
@@ -348,6 +374,7 @@ export default {
   },
   data() {
     return {
+      html: 'null',
       products: {},
       object: {},
       slide: []
@@ -360,14 +387,25 @@ export default {
     showDetails(item) {
       //   console.log(item);
       this.object = item;
+      this.html = '';
+      //   console.log(this.object.); <carousel :data="slide"></carousel>
 
       var photo = [];
+      var html = '';
       for (let i = 0; i < this.object.media.length; i++) {
         photo[i] =
           '<img class="img-fluid" alt="Responsive image" src="' +
           this.object.media[i].path +
           '" />';
+
+          var active = '';
+          if(i == 0){
+              active = 'active';
+          }
+
+          html += '<div class="carousel-item '+ active +'"><img class="d-block w-100" src="'+ this.object.media[i].path +'" alt="First slide"></div>';
       }
+      this.html = '<div id="carouselExampleControls" class="carousel slide" data-ride="carousel"><div class="carousel-inner">'+html+'</div><a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a></div>';
       this.slide = photo;
       console.log(this.slide);
 
@@ -390,6 +428,15 @@ export default {
     },
     addCart() {
       this.$emit("addCart", 1);
+    },
+    mustLogin() {
+      Fire.$emit("mustLogin", true);
+    },
+    details() {
+      $("#myModal").modal("hide");
+      $(".modal-backdrop").remove();
+
+      this.$router.push("/detail/" + this.object.id);
     }
   }
 };

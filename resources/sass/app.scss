@@ -7,7 +7,7 @@
 // Bulma
 // @import "node_modules/bulma-extensions/bulma-carousel/dist/css/bulma-carousel.min";
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap/scss/bootstrap';
 // Bootstrap
 // @import 'node_modules/bootstrap-vue/src/index.scss';
 // Base
@@ -54,14 +54,12 @@ li.nav-item a.nav-link.router-link-exact-active {
     background: #fff;
 }
 
-.navbar-cos {
-    background: rgba(217, 198, 146, 0.6);
-}
-
-.navbar-cos .navbar-brand {
-    color: #553805;
-}
-
+// .navbar-cos {
+//     background: rgba(217, 198, 146, 0.6);
+// }
+// .navbar-cos .navbar-brand {
+//     color: #553805;
+// }
 // .is-primary strong {
 //     color: #fff;
 // }

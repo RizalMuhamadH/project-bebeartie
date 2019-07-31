@@ -38,6 +38,9 @@
 
 <body>
     <div id="app">
+
+        <!-- set progressbar -->
+        <vue-progress-bar></vue-progress-bar>
         <Home></Home>
     </div>
 </body>
