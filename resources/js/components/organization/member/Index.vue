@@ -214,7 +214,6 @@
                 />
                 <has-error :form="form" field="phone"></has-error>
               </div>
-
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -241,7 +240,7 @@ export default {
         address: "",
         city: "",
         postcode: "",
-        phone: "",
+        phone: ""
       }),
       member: {}
     };
@@ -270,10 +269,12 @@ export default {
       axios
         .get("/api/members")
         .then(res => {
+          console.log(res);
           this.member = res.data;
           this.$Progress.finish();
         })
         .catch(err => {
+          console.log(err);
           this.errors = err.res.data.errors;
           this.$Progress.fail();
         });
@@ -324,7 +325,7 @@ export default {
           });
         })
         .catch(err => {
-            console.log(err);
+          console.log(err);
           this.$Progress.fail();
         });
     },

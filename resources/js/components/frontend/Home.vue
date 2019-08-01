@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-    </div> -->
+    </div>-->
 
     <header id="header3">
       <nav class="navbar navbar-expand-lg navbar-light" id="nav">
@@ -70,7 +70,7 @@
                 </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <div class="nav-link" style="cursor: pointer;" @click="showLogin()">Login</div>
               </li>
             </ul>
             <!-- Cart & Search -->
@@ -202,23 +202,140 @@
         </div>
       </div>
     </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="fa fa-times"></i>
+          </button>
+          <div class="row">
+            <!-- <div class="col-md-6 col-sm-6"> -->
+            <!-- HTML -->
+            <div id="account-id">
+              <h4 class="account-title">
+                <span class="fa fa-chevron-right"></span>Login
+              </h4>
+              <div class="account-form">
+                <form class="form-login" @submit.prevent="login()">
+                  <ul class="form-list row">
+                    <!-- <li class="col-md-6 col-sm-12">
+                        <a href="#" class="btn facebook">
+                          <i class="fa fa-facebook"></i>Sign in with Facebook
+                        </a>
+                      </li>
+                      <li class="col-md-6 col-sm-12">
+                        <a href="#" class="btn twitter">
+                          <i class="fa fa-twitter"></i>Sign in with Twitter
+                        </a>
+                    </li>-->
+                    <li class="col-md-12 col-sm-12">
+                      <label>
+                        Email
+                        <em>*</em>
+                      </label>
+                      <input
+                        v-model="form.email"
+                        id="email"
+                        required
+                        type="email"
+                        class="input-text"
+                        :class="{ 'is-invalid': form.errors.has('email') }"
+                      />
+                      <has-error :form="form" field="email"></has-error>
+                    </li>
+                    <li class="col-md-12 col-sm-12">
+                      <label>
+                        Your password
+                        <em>*</em>
+                      </label>
+                      <input
+                        required
+                        v-model="form.password"
+                        id="password"
+                        name="password"
+                        type="password"
+                        class="input-text"
+                        :class="{ 'is-invalid': form.errors.has('password') }"
+                      />
+
+                      <has-error :form="form" field="password"></has-error>
+                    </li>
+                    <li class="col-md-6 col-sm-12">
+                      <input class="input-chkbox" type="checkbox" />
+                      <label>Remember me</label>
+                    </li>
+                    <li class="col-md-6 col-sm-12 pwd text-right">
+                      <label>
+                        <a href="#">forgot password?</a>
+                      </label>
+                    </li>
+                  </ul>
+                  <div class="buttons-set">
+                    <button class="btn-black" type="submit">
+                      <span>login</span>
+                    </button>
+                    <div class="btn-black" style="cursor: pointer;">
+                      <span>Register</span>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      form: new Form({
+        email: "",
+        password: ""
+      }),
       count: 100,
-      stat: false
+      stat: false,
+      isLoggedIn: localStorage.getItem("bebeartie.jwt") != null
     };
   },
+  mounted() {},
   created() {
     this.load();
     Fire.$on("mustLogin", data => {
-      console.log(data);
+      this.showLogin();
     });
   },
   methods: {
+    setDefault() {
+      if (this.isLoggedIn) {
+        let member = JSON.parse(localStorage.getItem("bebeartie.user"));
+      }
+    },
+    change() {
+      this.isLoggedIn = localStorage.getItem("bebeartie.jwt") != null;
+      this.setDefaults();
+    },
+    login() {
+      this.form.post('frontend/member/login').then((value) => {
+         console.log(value);
+      }).catch((err) => {
+          console.log(err);
+      })
+    },
+    logout() {
+      localStorage.removeItem("bebeartie.jwt");
+      localStorage.removeItem("bebeartie.user");
+      this.change();
+      this.$router.push("/");
+    },
+    showLogin() {
+      $("#modalLogin").modal("show");
+    },
     load() {
       this.$router.push("/front");
     },

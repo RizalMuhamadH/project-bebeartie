@@ -85,7 +85,7 @@ class MemberController extends Controller
         $data = request()->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'],
+            // 'password' => ['string', 'min:8'],
             'gender' => ['required', 'string'],
             'address' => ['required', 'string'],
             'city' => ['required', 'string'],
@@ -93,9 +93,9 @@ class MemberController extends Controller
             'phone' => ['required', 'string'],
         ]);
 
-        // if($data['password'] == null){
-        //     $data['password'] = $member->password;
-        // }
+        if(request()->password != null){
+            $data['password'] = bcrypt(request()->password);
+        }
 
         Member::where('id', $id)->update(array_merge($data));
 

@@ -217,6 +217,21 @@ Vue.component('Home', require('./components/frontend/Home.vue').default);
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('Tinymce', Tinymce);
 
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue').default
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue').default
+);
+
 
 /**
  * Vue Router
@@ -235,6 +250,11 @@ const routes = [{
         path: '/categories',
         name: 'categoryIndex',
         component: require('./components/organization/category/Index.vue').default
+    },
+    {
+        path: '/passport',
+        name: 'passportIndex',
+        component: require('./components/organization/authorization/Index.vue').default
     },
     {
         path: '/promotes',

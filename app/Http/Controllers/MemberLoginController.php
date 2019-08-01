@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
 use Illuminate\Http\Request;
+use App\Member;
+// use Lcobucci\JWT\Parser;
+
+// use Illuminate\Support\Facades\Auth;
 
 class MemberLoginController extends Controller
 {
@@ -12,14 +17,31 @@ class MemberLoginController extends Controller
 
     protected $redirectTo = '/';
 
-    public function __construct()
-    {
-        $this->middleware('guest:member')->except('logout')->except('index');
-    }
-
     protected function guard()
     {
         return Auth::guard('member');
+    }
+
+    public function login(Request $request)
+    {
+        $status = 401;
+        $response = ['error' => 'Unauthorised'];
+
+        // $email = request()->email;
+        // $password = Hash::make(request()->password);
+
+        // request()->password = bcrypt(request()->password);
+        // return Auth::guard('member')->attempt(['email' => $email, 'password' => $password]);
+        if (Auth::guard('member')->attempt(['email' => request()->email, 'password' => request()->password])) {
+            $status = 200;
+            $member = Member::where('email', request()->email)->firstOrFail();
+            $response = [
+                'akun' => $member,
+                'access_token' => $member->createToken('bebeartie')->accessToken,
+            ];
+        }
+
+        return response()->json($response, $status);
     }
 
     public function register(Request $request)
@@ -34,8 +56,12 @@ class MemberLoginController extends Controller
             'postcode' => 'required|string',
             'phone' => 'required|string',
         ]);
-        \App\Member::create($request->all());
-        return redirect()->route('member.signup')->with('success', 'Successfully register!');
+        $member = \App\Member::create($request->all());
+        // return redirect()->route('member.signup')->with('success', 'Successfully register!');
+        return response()->json([
+            'akun' => $member,
+            'token' => $member->createToken('bebeartie')->accessToken,
+        ]);
     }
     /**
      * Display a listing of the resource.
@@ -111,5 +137,14 @@ class MemberLoginController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function logout(Request $request)
+    {
+        Member::findOrFail(request()->id)->token->revoke();
+        $this->guard()->logout();
+        Auth::logout();
+        $request->session()->invalidate();
+        return redirect('/');
     }
 }
