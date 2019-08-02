@@ -133,7 +133,7 @@
     </header>
     <!-- </header> -->
     <div class="is-fluid">
-      <router-view :counter="count" :stat="stat" v-on:addCart="addCart($event)"></router-view>
+      <router-view :counter="count" :stat="stat"></router-view>
     </div>
     <!-- FOOTER -->
     <footer>
@@ -298,7 +298,8 @@ export default {
         email: "",
         password: ""
       }),
-      count: 100,
+      listItem: [],
+      count: 0,
       stat: false,
       isLoggedIn: localStorage.getItem("bebeartie.jwt") != null
     };
@@ -306,8 +307,12 @@ export default {
   mounted() {},
   created() {
     this.load();
+    this.loadListItemCart();
     Fire.$on("mustLogin", data => {
       this.showLogin();
+    });
+    Fire.$on("addCart", data => {
+      this.loadListItemCart();
     });
   },
   methods: {
@@ -318,14 +323,30 @@ export default {
     },
     change() {
       this.isLoggedIn = localStorage.getItem("bebeartie.jwt") != null;
-      this.setDefaults();
+      this.setDefault();
     },
     login() {
-      this.form.post('frontend/member/login').then((value) => {
-         console.log(value);
-      }).catch((err) => {
+      this.$Progress.start();
+      this.form
+        .post("frontend/member/login")
+        .then(res => {
+          localStorage.setItem(
+            "bebeartie.user",
+            JSON.stringify(res.data.account)
+          );
+
+          localStorage.setItem("bebeartie.jwt", res.data.access_token);
+          console.log(res);
+          this.change();
+          this.$Progress.finish();
+
+          $("#modalLogin").modal("hide");
+          $(".modal-backdrop").remove();
+        })
+        .catch(err => {
           console.log(err);
-      })
+          this.$Progress.fail();
+        });
     },
     logout() {
       localStorage.removeItem("bebeartie.jwt");
@@ -333,15 +354,39 @@ export default {
       this.change();
       this.$router.push("/");
     },
+    loadListItemCart() {
+      if (localStorage.getItem("bebeartie.jwt") != null) {
+        // this.$Progress.start();
+        axios.defaults.headers.common["Content-Type"] = "application/json";
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + localStorage.getItem("bebeartie.jwt");
+
+        let user = JSON.parse(localStorage.getItem("bebeartie.user"));
+
+        axios
+          .get("api/cart/show/" + user.id)
+          .then(res => {
+            this.listItem = res.data;
+            // this.$Progress.finish();
+            console.log(res);
+          })
+          .catch(err => {
+            // this.$Progress.fail();
+            console.error(err);
+          });
+      }
+    },
     showLogin() {
       $("#modalLogin").modal("show");
+
+      this.form.reset();
     },
     load() {
       this.$router.push("/front");
-    },
-    addCart(add) {
-      this.count += add;
     }
+    // addCart(add) {
+    //   this.count += add;
+    // }
   }
 };
 </script>

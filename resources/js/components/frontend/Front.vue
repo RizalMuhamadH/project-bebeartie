@@ -301,8 +301,8 @@
                 </a>
               </div>-->
               <div v-html="html">
-                  {{ html }}
-              <!-- <carousel :data="slide"></carousel> -->
+                {{ html }}
+                <!-- <carousel :data="slide"></carousel> -->
               </div>
             </div>
             <div class="col-md-7 col-sm-6">
@@ -328,13 +328,7 @@
                       Quantity
                       <span>*</span>
                     </p>
-                    <select>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
+                    <input type="number" v-model="qty" placeholder="qty" @change="qualityHandler" />
                   </div>
                 </div>
                 <div class="space20"></div>
@@ -350,7 +344,7 @@
                 </div>
                 <div class="space20"></div>
                 <div class="sep"></div>
-                <a class="btn-color" @click="addCart()" href="#">Add to Bag</a>
+                <a class="btn-color" @click="addCart(object.id)" href="#">Add to Bag</a>
                 <button @click="details()" class="btn-black">Go to Details</button>
               </div>
             </div>
@@ -374,38 +368,49 @@ export default {
   },
   data() {
     return {
-      html: 'null',
+      qty: 1,
+      html: "null",
       products: {},
       object: {},
       slide: []
     };
   },
+  mounted() {},
   created() {
     this.loadPage();
   },
   methods: {
     showDetails(item) {
+      this.qty = 1;
       //   console.log(item);
       this.object = item;
-      this.html = '';
+      this.html = "";
       //   console.log(this.object.); <carousel :data="slide"></carousel>
 
       var photo = [];
-      var html = '';
+      var html = "";
       for (let i = 0; i < this.object.media.length; i++) {
         photo[i] =
           '<img class="img-fluid" alt="Responsive image" src="' +
           this.object.media[i].path +
           '" />';
 
-          var active = '';
-          if(i == 0){
-              active = 'active';
-          }
+        var active = "";
+        if (i == 0) {
+          active = "active";
+        }
 
-          html += '<div class="carousel-item '+ active +'"><img class="d-block w-100" src="'+ this.object.media[i].path +'" alt="First slide"></div>';
+        html +=
+          '<div class="carousel-item ' +
+          active +
+          '"><img class="d-block w-100" src="' +
+          this.object.media[i].path +
+          '" alt="First slide"></div>';
       }
-      this.html = '<div id="carouselExampleControls" class="carousel slide" data-ride="carousel"><div class="carousel-inner">'+html+'</div><a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a></div>';
+      this.html =
+        '<div id="carouselExampleControls" class="carousel slide" data-ride="carousel"><div class="carousel-inner">' +
+        html +
+        '</div><a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></a><a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></a></div>';
       this.slide = photo;
       console.log(this.slide);
 
@@ -426,17 +431,47 @@ export default {
           Swal.fire("Failed!", "There was something wrong.", "warning");
         });
     },
-    addCart() {
-      this.$emit("addCart", 1);
-    },
-    mustLogin() {
-      Fire.$emit("mustLogin", true);
+    addCart(id) {
+      if (localStorage.getItem("bebeartie.jwt") != null) {
+        this.$Progress.start();
+        axios.defaults.headers.common["Content-Type"] = "application/json";
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + localStorage.getItem("bebeartie.jwt");
+
+        let user = JSON.parse(localStorage.getItem("bebeartie.user"));
+
+        axios
+          .post("api/cart/add", {
+            quality: this.qty,
+            product_id: id,
+            member_id: user.id
+          })
+          .then(res => {
+            Fire.$emit("addCart", true);
+            this.$Progress.finish();
+            console.log(res);
+
+            $("#myModal").modal("hide");
+            $(".modal-backdrop").remove();
+          })
+          .catch(err => {
+            this.$Progress.fail();
+            console.error(err);
+          });
+      } else {
+        Fire.$emit("mustLogin", true);
+      }
     },
     details() {
       $("#myModal").modal("hide");
       $(".modal-backdrop").remove();
 
       this.$router.push("/detail/" + this.object.id);
+    },
+    qualityHandler(){
+        if(this.qty == 0){
+            this.qty = 1;
+        }
     }
   }
 };

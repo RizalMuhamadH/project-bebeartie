@@ -29,6 +29,7 @@ Route::get('/api/other', 'OtherController@index');
 Route::post('/frontend/member/login', 'MemberLoginController@login');
 Route::post('/frontend/member/logout', 'MemberLoginController@logout');
 
+
 //frontend product
 Route::get('/frontend/getProductIndex', 'Frontend\ProductController@index');
 Route::get('/frontend/getProductDetail/{id}', 'Frontend\ProductController@show');

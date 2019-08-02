@@ -16,12 +16,12 @@ class CreateListItemsTable extends Migration
         Schema::create('list_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('quality');
-            $table->unsignedBigInteger('basket_id');
+            $table->unsignedBigInteger('cart_id');
             $table->unsignedBigInteger('product_id');
             $table->timestamps();
 
 
-            $table->index('basket_id');
+            $table->index('cart_id');
             $table->index('product_id');
         });
     }

@@ -36,8 +36,8 @@ class MemberLoginController extends Controller
             $status = 200;
             $member = Member::where('email', request()->email)->firstOrFail();
             $response = [
-                'akun' => $member,
-                'access_token' => $member->createToken('bebeartie')->accessToken,
+                'account' => Auth::guard('member')->user(),
+                'access_token' => Auth::guard('member')->user()->createToken('bebeartie')->accessToken,
             ];
         }
 
