@@ -1441,6 +1441,10 @@ footer {
     float: left !important;
 }
 
+.pull-right {
+    float: right !important;
+}
+
 .tb_center {
     margin-left: 125px;
     padding: 10px 0;
@@ -1603,7 +1607,7 @@ footer {
     visibility: hidden;
     transition: .4s;
     z-index: 99999;
-    height: 465px;
+    height: auto;
     overflow: auto;
     overflow-x: hidden !important;
 }
@@ -3552,7 +3556,7 @@ footer {
 .totals {
     background: #f5f5f5;
     padding: 38px;
-    text-align: right;
+    text-align: left;
 }
 
 #shopping-cart-totals-table {

@@ -230,7 +230,7 @@
             <span>Latest Products</span>
           </h5>
           <div class="row">
-            <div class="col-md-4 col-sm-6" v-for="item in products" :key="item.id">
+            <div class="col-md-4 col-sm-6" v-for="item in allItem" :key="item.id">
               <div class="product-item">
                 <div class="item-thumb">
                   <span class="badge new">New</span>
@@ -355,6 +355,7 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   props: {
     counter: {
@@ -370,16 +371,19 @@ export default {
     return {
       qty: 1,
       html: "null",
-      products: {},
       object: {},
       slide: []
     };
   },
   mounted() {},
+  computed: {
+    ...mapGetters(["allItem", "text"])
+  },
   created() {
-    this.loadPage();
+    this.fetchProductLimit();
   },
   methods: {
+    ...mapActions(["fetchProductLimit"]),
     showDetails(item) {
       this.qty = 1;
       //   console.log(item);
@@ -416,20 +420,6 @@ export default {
 
       $("#myModal").modal("show");
       //   $(".modal-backdrop").remove();
-    },
-    loadPage() {
-      this.$Progress.start();
-      axios
-        .get("/frontend/getProductLimit")
-        .then(res => {
-          this.products = res.data;
-          this.$Progress.finish();
-        })
-        .catch(err => {
-          this.$Progress.fail();
-          console.error(err);
-          Swal.fire("Failed!", "There was something wrong.", "warning");
-        });
     },
     addCart(id) {
       if (localStorage.getItem("bebeartie.jwt") != null) {
@@ -468,10 +458,10 @@ export default {
 
       this.$router.push("/detail/" + this.object.id);
     },
-    qualityHandler(){
-        if(this.qty == 0){
-            this.qty = 1;
-        }
+    qualityHandler() {
+      if (this.qty == 0) {
+        this.qty = 1;
+      }
     }
   }
 };

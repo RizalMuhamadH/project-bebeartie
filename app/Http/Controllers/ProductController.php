@@ -53,7 +53,7 @@ class ProductController extends Controller
         ]);
 
         $name = time() . '.' . explode('/', explode(':', substr(request()->image_thumb, 0, strpos(request()->image_thumb, ';')))[1])[1];
-        Image::make(request()->image_thumb)->save(public_path('storage/thumb/') . $name);
+        Image::make(request()->image_thumb)->resize(640, 480)->save(public_path('storage/thumb/') . $name);
 
         $result = Product::create([
             'name' => $data['name'],

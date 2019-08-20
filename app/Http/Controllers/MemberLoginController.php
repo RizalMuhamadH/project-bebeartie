@@ -6,6 +6,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Auth;
 use Illuminate\Http\Request;
 use App\Member;
+use Illuminate\Support\Facades\DB;
+
 // use Lcobucci\JWT\Parser;
 
 // use Illuminate\Support\Facades\Auth;
@@ -141,10 +143,13 @@ class MemberLoginController extends Controller
 
     public function logout(Request $request)
     {
-        Member::findOrFail(request()->id)->token->revoke();
-        $this->guard()->logout();
-        Auth::logout();
-        $request->session()->invalidate();
-        return redirect('/');
+        $revoked = DB::table('oauth_access_tokens')->where('user_id', '=', request()->id)->update(['revoked' => true]);
+        // $this->guard()->logout();
+        // $this->guard()->logout();
+        // Auth::logout();
+        // $request->session()->invalidate();
+        return response()->json([
+            'revoked' => $revoked,
+        ]);
     }
 }

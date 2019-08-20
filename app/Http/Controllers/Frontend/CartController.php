@@ -74,8 +74,8 @@ class CartController extends Controller
         $cart = Cart::where('member_id', $id)->first();
 
         $response = ['message' => 'not found'];
-        if($cart != null){
-            $response = List_item::with('product')->where('cart_id', $cart->id)->get();
+        if ($cart != null) {
+            $response = List_item::with('product')->with('product.promote')->where('cart_id', $cart->id)->get();
         }
         return response()->json($response);
     }
@@ -87,9 +87,7 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
-    }
+    { }
 
     /**
      * Update the specified resource in storage.
@@ -100,7 +98,11 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $response = ['message' => 'failed'];
+        List_item::findorFail($id)->update(['quality' => request()->quality]);
+        return response()->json(request());
+        // return 'test';
     }
 
     /**
@@ -111,6 +113,6 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        List_item::findorFail($id)->delete();
     }
 }

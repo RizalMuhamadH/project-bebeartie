@@ -15,6 +15,8 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'auth:api-member'], function () {
     Route::post('/cart/add', 'Frontend\CartController@store');
+    Route::put('/cart/update/{id}', 'Frontend\CartController@update');
+    Route::delete('/cart/{id}', 'Frontend\CartController@destroy');
     Route::get('/cart/show/{id}', 'Frontend\CartController@show');
 });
 

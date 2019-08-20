@@ -69,8 +69,22 @@
                   <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </li>
+              <li v-if="isLoggedIn" class="nav-item">
+                <router-link to="/shop" class="nav-link">Account</router-link>
+              </li>
               <li class="nav-item">
-                <div class="nav-link" style="cursor: pointer;" @click="showLogin()">Login</div>
+                <div
+                  v-if="!isLoggedIn"
+                  class="nav-link"
+                  style="cursor: pointer;"
+                  @click="showLogin()"
+                >Login</div>
+                <div
+                  v-if="isLoggedIn"
+                  class="nav-link"
+                  style="cursor: pointer;"
+                  @click="logout()"
+                >Logout</div>
               </li>
             </ul>
             <!-- Cart & Search -->
@@ -79,44 +93,32 @@
                 <span>
                   <i class="fa fa-shopping-cart"></i>
                 </span>
-                <div class="cart-info">
+                <div class="cart-info" v-if="listItem.length > 0">
                   <small>
                     You have
-                    <em class="highlight">3 item(s)</em> in your shopping bag
+                    <em class="highlight">{{ listItem.length }} item(s)</em> in your shopping bag
                   </small>
-                  <div class="ci-item">
-                    <img src="images/products/fashion/8.jpg" width="80" alt />
+                  <div class="ci-item" v-for="item in listItem" :key="item.id">
+                    <img :src="item.product.image_thumb" width="80" alt />
                     <div class="ci-item-info">
                       <h5>
-                        <a href="./single-product.html">Product fashion</a>
+                        <div>{{ item.product.name }}</div>
                       </h5>
-                      <p>2 x $250.00</p>
-                      <div class="ci-edit">
+                      <p>{{ item.quality }} x {{ item.product.price | currency }}</p>
+                      <!-- <div class="ci-edit">
                         <a href="#" class="edit fa fa-edit"></a>
                         <a href="#" class="edit fa fa-trash"></a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="ci-item">
-                    <img src="images/products/fashion/15.jpg" width="80" alt />
-                    <div class="ci-item-info">
-                      <h5>
-                        <a href="./single-product.html">Product fashion</a>
-                      </h5>
-                      <p>2 x $250.00</p>
-                      <div class="ci-edit">
-                        <a href="#" class="edit fa fa-edit"></a>
-                        <a href="#" class="edit fa fa-trash"></a>
-                      </div>
+                      </div>-->
                     </div>
                   </div>
 
-                  <div class="ci-total">Subtotal: $750.00</div>
+                  <div class="ci-total">Subtotal: {{ totalPrice | currency }}</div>
                   <div class="cart-btn">
-                    <a href="#">View Bag</a>
+                    <router-link to="/view">View Bag</router-link>
                     <a href="#">Checkout</a>
                   </div>
                 </div>
+                <div class="cart-info" v-else>Empty</div>
               </div>
               <div class="topsearch">
                 <span>
@@ -291,6 +293,7 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -298,16 +301,23 @@ export default {
         email: "",
         password: ""
       }),
+      //   user: {},
       listItem: [],
+      totalPrice: 0,
       count: 0,
-      stat: false,
-      isLoggedIn: localStorage.getItem("bebeartie.jwt") != null
+      stat: false
+      //   isLoggedIn: localStorage.getItem("bebeartie.jwt") != null
     };
   },
   mounted() {},
+  computed: {
+    ...mapGetters(["isLoggedIn", "token", "user"])
+  },
   created() {
+    this.change();
     this.load();
     this.loadListItemCart();
+    // this.setDefault();
     Fire.$on("mustLogin", data => {
       this.showLogin();
     });
@@ -316,32 +326,37 @@ export default {
     });
   },
   methods: {
-    setDefault() {
-      if (this.isLoggedIn) {
-        let member = JSON.parse(localStorage.getItem("bebeartie.user"));
-      }
-    },
-    change() {
-      this.isLoggedIn = localStorage.getItem("bebeartie.jwt") != null;
-      this.setDefault();
-    },
+    ...mapActions(["logged", "setDefault", "change"]),
+    // setDefault() {
+    //   if (this.isLoggedIn) {
+    //     this.user = JSON.parse(localStorage.getItem("bebeartie.user"));
+    //   }
+    // },
+    // change() {
+    //   this.isLoggedIn = localStorage.getItem("bebeartie.jwt") != null;
+    //   this.setDefault();
+    // },
     login() {
       this.$Progress.start();
       this.form
         .post("frontend/member/login")
         .then(res => {
-          localStorage.setItem(
-            "bebeartie.user",
-            JSON.stringify(res.data.account)
-          );
+          //   localStorage.setItem(
+          //     "bebeartie.user",
+          //     JSON.stringify(res.data.account)
+          //   );
 
-          localStorage.setItem("bebeartie.jwt", res.data.access_token);
+          //   localStorage.setItem("bebeartie.jwt", res.data.access_token);
+
+          this.logged(res.data.access_token, res.data.account);
           console.log(res);
-          this.change();
+          //   this.change();
           this.$Progress.finish();
 
           $("#modalLogin").modal("hide");
           $(".modal-backdrop").remove();
+
+          Fire.$emit("addCart", true);
         })
         .catch(err => {
           console.log(err);
@@ -349,10 +364,19 @@ export default {
         });
     },
     logout() {
-      localStorage.removeItem("bebeartie.jwt");
-      localStorage.removeItem("bebeartie.user");
-      this.change();
-      this.$router.push("/");
+      console.log(this.user.id);
+      axios
+        .post("frontend/member/logout", { id: this.user.id })
+        .then(res => {
+          console.log(res);
+
+          this.change();
+          this.listItem = [];
+          //   this.$router.push("/");
+        })
+        .catch(err => {
+          console.error(err);
+        });
     },
     loadListItemCart() {
       if (localStorage.getItem("bebeartie.jwt") != null) {
@@ -367,6 +391,15 @@ export default {
           .get("api/cart/show/" + user.id)
           .then(res => {
             this.listItem = res.data;
+            this.lengthItem = this.listItem.length;
+
+            this.totalPrice = 0;
+
+            for (let i = 0; i < this.listItem.length; i++) {
+              this.totalPrice +=
+                this.listItem[i].quality * this.listItem[i].product.price;
+              console.log(this.totalPrice);
+            }
             // this.$Progress.finish();
             console.log(res);
           })

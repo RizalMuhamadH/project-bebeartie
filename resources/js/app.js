@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 import Tinymce from 'vue-tinymce-editor';
 import VueCarousel from '@chenfengyuan/vue-carousel';
 import VueCurrencyFilter from 'vue-currency-filter';
+import store from './store';
 
 require('./bootstrap');
 
@@ -296,6 +297,11 @@ const routes = [{
         name: 'detail',
         component: require('./components/frontend/Detail.vue').default
     },
+    {
+        path: '/view',
+        name: 'bag',
+        component: require('./components/frontend/Bag.vue').default
+    },
 ]
 
 const router = new VueRouter({ routes });
@@ -307,6 +313,7 @@ const router = new VueRouter({ routes });
  */
 
 const app = new Vue({
+    store,
     router,
     el: '#app',
 });
