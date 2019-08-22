@@ -11,17 +11,13 @@ const getters = {
     user: (state) => state.user
 };
 const actions = {
-    async logged({ commit }, token, user) {
-        localStorage.setItem(
-            "bebeartie.user",
-            JSON.stringify(user)
-        );
+    async logged({ commit, dispatch }, token) {
 
-        localStorage.setItem("bebeartie.jwt", token);
-
-        commit('SET_USER', JSON.stringify(user));
+        commit('SET_USER', JSON.parse(localStorage.getItem("bebeartie.user")));
         commit('SET_TOKEN', token);
         commit('SET_STATUS_LOGIN', true);
+
+        dispatch('setHeader');
 
     },
     async change({ commit, dispatch }) {
@@ -33,7 +29,7 @@ const actions = {
             dispatch('setHeader');
         }
     },
-    async logout({ commit }) {
+    async logout({ commit, dispatch }) {
         await axios
             .post("frontend/member/logout", { id: state.user.id })
             .then(res => {
@@ -44,6 +40,7 @@ const actions = {
                 commit('SET_STATUS_LOGIN', false);
                 commit('SET_TOKEN', null);
                 //   this.$router.push("/");
+                dispatch('change');
             })
             .catch(err => {
                 console.error(err);
@@ -54,6 +51,7 @@ const actions = {
         if (localStorage.getItem("bebeartie.jwt") != null) {
 
             axios.defaults.headers.common["Content-Type"] = "application/json";
+            axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
             axios.defaults.headers.common["Authorization"] =
                 "Bearer " + state.token;
         }

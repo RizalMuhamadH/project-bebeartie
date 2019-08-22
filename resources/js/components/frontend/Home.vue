@@ -63,14 +63,14 @@
                   aria-expanded="false"
                 >Dropdown</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" @click="modal()" href="#">Action</a>
                   <a class="dropdown-item" href="#">Another action</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Something else here</a>
                 </div>
               </li>
               <li v-if="isLoggedIn" class="nav-item">
-                <router-link to="/shop" class="nav-link">Account</router-link>
+                <router-link to="#" class="nav-link">Account</router-link>
               </li>
               <li class="nav-item">
                 <div
@@ -112,7 +112,7 @@
                     </div>
                   </div>
 
-                  <div class="ci-total">Subtotal: {{ totalPrice | currency }}</div>
+                  <div class="ci-total">Subtotal: {{ subTotal | currency }}</div>
                   <div class="cart-btn">
                     <router-link to="/view">View Bag</router-link>
                     <a href="#">Checkout</a>
@@ -135,7 +135,7 @@
     </header>
     <!-- </header> -->
     <div class="is-fluid">
-      <router-view :counter="count" :stat="stat"></router-view>
+      <router-view></router-view>
     </div>
     <!-- FOOTER -->
     <footer>
@@ -293,7 +293,7 @@
   </div>
 </template>
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 export default {
   data() {
     return {
@@ -301,55 +301,50 @@ export default {
         email: "",
         password: ""
       }),
-      //   user: {},
-      listItem: [],
-      totalPrice: 0,
-      count: 0,
       stat: false
-      //   isLoggedIn: localStorage.getItem("bebeartie.jwt") != null
     };
   },
   mounted() {},
   computed: {
-    ...mapGetters(["isLoggedIn", "token", "user"])
+    ...mapGetters(["isLoggedIn", "token", "user"]),
+    ...mapGetters("cart", {
+      listItem: "listItem",
+      subTotal: "subTotal",
+      lengthItem: "lengthItem"
+    })
   },
   created() {
+    this.cekOngkir();
     this.change();
     this.load();
-    this.loadListItemCart();
-    // this.setDefault();
+    this.itemCart();
     Fire.$on("mustLogin", data => {
       this.showLogin();
     });
     Fire.$on("addCart", data => {
-      this.loadListItemCart();
+      this.itemCart();
     });
   },
   methods: {
-    ...mapActions(["logged", "setDefault", "change"]),
-    // setDefault() {
-    //   if (this.isLoggedIn) {
-    //     this.user = JSON.parse(localStorage.getItem("bebeartie.user"));
-    //   }
-    // },
-    // change() {
-    //   this.isLoggedIn = localStorage.getItem("bebeartie.jwt") != null;
-    //   this.setDefault();
-    // },
+    ...mapActions(["logged", "setDefault", "change", "logout"]),
+    ...mapActions("cart", {
+      itemCart: "loadListItemCart"
+    }),
+    // ...mapMutations("cart", {
+    //   modal: "SET_MODAL"
+    // }),
     login() {
       this.$Progress.start();
       this.form
         .post("frontend/member/login")
         .then(res => {
-          //   localStorage.setItem(
-          //     "bebeartie.user",
-          //     JSON.stringify(res.data.account)
-          //   );
-
-          //   localStorage.setItem("bebeartie.jwt", res.data.access_token);
-
-          this.logged(res.data.access_token, res.data.account);
-          console.log(res);
+          localStorage.setItem(
+            "bebeartie.user",
+            JSON.stringify(res.data.account)
+          );
+          localStorage.setItem("bebeartie.jwt", res.data.access_token);
+          this.logged(res.data.access_token);
+          console.log(res.data.account);
           //   this.change();
           this.$Progress.finish();
 
@@ -363,52 +358,21 @@ export default {
           this.$Progress.fail();
         });
     },
-    logout() {
-      console.log(this.user.id);
-      axios
-        .post("frontend/member/logout", { id: this.user.id })
-        .then(res => {
-          console.log(res);
+    // logout() {
+    //   console.log(this.user.id);
+    //   axios
+    //     .post("frontend/member/logout", { id: this.user.id })
+    //     .then(res => {
+    //       console.log(res);
 
-          this.change();
-          this.listItem = [];
-          //   this.$router.push("/");
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    },
-    loadListItemCart() {
-      if (localStorage.getItem("bebeartie.jwt") != null) {
-        // this.$Progress.start();
-        axios.defaults.headers.common["Content-Type"] = "application/json";
-        axios.defaults.headers.common["Authorization"] =
-          "Bearer " + localStorage.getItem("bebeartie.jwt");
-
-        let user = JSON.parse(localStorage.getItem("bebeartie.user"));
-
-        axios
-          .get("api/cart/show/" + user.id)
-          .then(res => {
-            this.listItem = res.data;
-            this.lengthItem = this.listItem.length;
-
-            this.totalPrice = 0;
-
-            for (let i = 0; i < this.listItem.length; i++) {
-              this.totalPrice +=
-                this.listItem[i].quality * this.listItem[i].product.price;
-              console.log(this.totalPrice);
-            }
-            // this.$Progress.finish();
-            console.log(res);
-          })
-          .catch(err => {
-            // this.$Progress.fail();
-            console.error(err);
-          });
-      }
-    },
+    //       this.change();
+    //       //   this.listItem = [];
+    //       //   this.$router.push("/");
+    //     })
+    //     .catch(err => {
+    //       console.error(err);
+    //     });
+    // },
     showLogin() {
       $("#modalLogin").modal("show");
 
@@ -416,10 +380,21 @@ export default {
     },
     load() {
       this.$router.push("/front");
+    },
+    cekOngkir() {
+      axios
+        .get("http://api.rajaongkir.com/starter/province", {
+          headers: {
+            key: "d04e41ec70378c13df3a9cce3d6080c0"
+          }
+        })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(err => {
+          console.error(err);
+        });
     }
-    // addCart(add) {
-    //   this.count += add;
-    // }
   }
 };
 </script>

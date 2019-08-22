@@ -51,7 +51,7 @@
                   <div
                     class="btn-div"
                     :class="{active:item.id == selected}"
-                    @click="getProductCategory(item.id)"
+                    @click="fetchProductByCategory({id: item.id, name: item.name})"
                   >{{ item.name }}</div>
                 </li>
               </ul>
@@ -64,7 +64,7 @@
             <div class="pagenav-wrap"></div>
             <div class="space50"></div>
             <div class="row">
-              <div class="col-md-4 col-sm-6" v-for="item in products.data" :key="item.id">
+              <div class="col-md-4 col-sm-6" v-for="item in allItem.data" :key="item.id">
                 <div class="product-item">
                   <div class="item-thumb">
                     <span class="badge new">New</span>
@@ -104,7 +104,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6">
                   <div>
-                    <pagination :data="products" @pagination-change-page="getResults"></pagination>
+                    <pagination :data="allItem" @pagination-change-page="fetchNextPage"></pagination>
                   </div>
                 </div>
               </div>
@@ -179,13 +179,7 @@
                       Quantity
                       <span>*</span>
                     </p>
-                    <select>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
+                    <input type="number" v-model="qty" placeholder="qty" @change="qualityHandler" />
                   </div>
                 </div>
                 <div class="space20"></div>
@@ -201,7 +195,7 @@
                 </div>
                 <div class="space20"></div>
                 <div class="sep"></div>
-                <a class="btn-color" @click="addCart()" href="#">Add to Bag</a>
+                <a class="btn-color" @click="addCart({id: object.id, qty: qty})" href="#">Add to Bag</a>
                 <button @click="details()" class="btn-black">Go to Details</button>
               </div>
             </div>
@@ -212,33 +206,45 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
       object: {},
-      selected: null,
       isActive: false,
-      products: {},
-      categories: [],
-      title: "ALL",
       html: "",
-      slide: []
+      slide: [],
+      qty: 1
     };
+  },
+  computed: {
+    ...mapGetters(["allItem", "selected", "title", "categories"])
   },
   created() {
     this.scrollToTop();
-    this.getCategory();
-    this.loadData();
+    this.fetchGetCategory();
+    this.fetchProductAll();
     Fire.$on("scrollToUp", () => {
       this.scrollToTop();
     });
+    Fire.$on("modalHide", data => {
+      $("#myModal").modal("hide");
+      $(".modal-backdrop").remove();
+    });
   },
   methods: {
+    ...mapActions([
+      "fetchProductAll",
+      "fetchNextPage",
+      "fetchProductByCategory",
+      "fetchGetCategory"
+    ]),
+    ...mapActions("cart", {
+      addCart: "addCart"
+    }),
     showDetails(item) {
-      //   console.log(item);
       this.object = item;
       this.html = "";
-      //   console.log(this.object.); <carousel :data="slide"></carousel>
 
       var photo = [];
       var html = "";
@@ -268,60 +274,14 @@ export default {
       console.log(this.slide);
 
       $("#myModal").modal("show");
-      //   $(".modal-backdrop").remove();
     },
     scrollToTop() {
       window.scrollTo(0, 0);
     },
-    loadData() {
-      this.$Progress.start();
-      axios
-        .get("/frontend/getProductIndex")
-        .then(res => {
-          this.products = res.data;
-          this.$Progress.finish();
-        })
-        .catch(err => {
-          this.$Progress.fail();
-          console.error(err);
-          Swal.fire("Failed!", "There was something wrong.", "warning");
-        });
-    },
-    getCategory() {
-      this.$Progress.start();
-      axios
-        .get("/frontend/getCategoryIndex")
-        .then(res => {
-          this.categories = res.data;
-          this.$Progress.finish();
-        })
-        .catch(err => {
-          this.$Progress.fail();
-          console.error(err);
-          Swal.fire("Failed!", "There was something wrong.", "warning");
-        });
-    },
-    getResults(page = 1) {
-      axios.get(this.products.path + "?page=" + page).then(response => {
-        this.products = response.data;
-        Fire.$emit("scrollToUp");
-      });
-    },
-    getProductCategory(id) {
-      this.selected = id;
-
-      this.$Progress.start();
-      axios
-        .get("/frontend/getProductCategory/" + id)
-        .then(res => {
-          this.products = res.data;
-          this.$Progress.finish();
-        })
-        .catch(err => {
-          this.$Progress.fail();
-          console.error(err);
-          Swal.fire("Failed!", "There was something wrong.", "warning");
-        });
+    qualityHandler() {
+      if (this.qty == 0) {
+        this.qty = 1;
+      }
     }
   }
 };

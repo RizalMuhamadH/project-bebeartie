@@ -47,9 +47,9 @@
                     <i class="fa fa-edit"></i>
                   </div>
                 </td>
-                <td v-if="idItem != item.id">{{ item.quality }}</td>
+                <td v-if="selected != item.id">{{ item.quality }}</td>
                 <td v-else>
-                  <form @submit.prevent="updateItem()">
+                  <form @submit.prevent="updateItem({id: selected, quality: qualityTmp})">
                     <input type="number" v-model="qualityTmp" />
                     <center>
                       <button type="submit" class="btn-black pull-left">Update</button>
@@ -114,113 +114,41 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapActions, mapMutations } from "vuex";
 export default {
   data() {
     return {
-      listItem: [],
-      totalPrice: 0,
-      subTotal: 0,
       idItem: null,
       qualityTmp: 0
     };
   },
   created() {
-    this.loadListItemCart();
+    this.itemCart();
     Fire.$on("addCart", data => {
-      this.loadListItemCart();
+      this.itemCart();
     });
   },
+  computed: {
+    ...mapGetters("cart", {
+      listItem: "listItem",
+      subTotal: "subTotal",
+      lengthItem: "lengthItem",
+      totalPrice: "totalPrice",
+      selected: "selected"
+    })
+  },
   methods: {
-    loadListItemCart() {
-      if (localStorage.getItem("bebeartie.jwt") != null) {
-        // this.$Progress.start();
-        axios.defaults.headers.common["Content-Type"] = "application/json";
-        axios.defaults.headers.common["Authorization"] =
-          "Bearer " + localStorage.getItem("bebeartie.jwt");
-
-        let user = JSON.parse(localStorage.getItem("bebeartie.user"));
-
-        axios
-          .get("api/cart/show/" + user.id)
-          .then(res => {
-            this.listItem = res.data;
-            this.lengthItem = this.listItem.length;
-
-            this.totalPrice = 0;
-            this.subTotal = 0;
-
-            for (let i = 0; i < this.listItem.length; i++) {
-              let discount =
-                this.listItem[i].product.price *
-                (this.listItem[i].product.promote.discount / 100);
-              let endPrice = this.listItem[i].product.price - discount;
-              this.totalPrice += this.listItem[i].quality * endPrice;
-              this.subTotal +=
-                this.listItem[i].quality * this.listItem[i].product.price;
-            }
-            // this.$Progress.finish();
-            // console.log(res);
-          })
-          .catch(err => {
-            // this.$Progress.fail();
-            // console.error(err);
-          });
-      }
-    },
+    ...mapActions("cart", {
+      itemCart: "loadListItemCart",
+      updateItem: "updateCart",
+      delItem: "delItemCart"
+    }),
+    ...mapMutations("cart", {
+      selectItem: "SET_SELECTED_ITEM"
+    }),
     editShow(id, qty) {
-      console.log(id);
-
-      this.idItem = id;
+      this.selectItem(id);
       this.qualityTmp = qty;
-    },
-    delItem(id) {
-      if (localStorage.getItem("bebeartie.jwt") != null) {
-        this.$Progress.start();
-        axios.defaults.headers.common["Content-Type"] = "application/json";
-        axios.defaults.headers.common["Authorization"] =
-          "Bearer " + localStorage.getItem("bebeartie.jwt");
-
-        axios
-          .delete("api/cart/" + id)
-          .then(res => {
-            Fire.$emit("addCart", true);
-            this.$Progress.finish();
-            console.log(res);
-          })
-          .catch(err => {
-            this.$Progress.fail();
-            console.error(err);
-          });
-      } else {
-        Fire.$emit("mustLogin", true);
-      }
-    },
-    updateItem() {
-      if (localStorage.getItem("bebeartie.jwt") != null) {
-        this.$Progress.start();
-        axios.defaults.headers.common["Content-Type"] = "application/json";
-        axios.defaults.headers.common["Authorization"] =
-          "Bearer " + localStorage.getItem("bebeartie.jwt");
-
-        axios
-          .put("api/cart/update/" + this.idItem, {
-            quality: this.qualityTmp,
-            id: this.idItem
-          })
-          .then(res => {
-            Fire.$emit("addCart", true);
-            this.$Progress.finish();
-            console.log(res);
-
-            this.idItem = null;
-          })
-          .catch(err => {
-            this.$Progress.fail();
-            console.error(err);
-          });
-      } else {
-        Fire.$emit("mustLogin", true);
-      }
     }
   }
 };

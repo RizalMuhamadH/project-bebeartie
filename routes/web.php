@@ -62,3 +62,5 @@ Route::delete('/api/product_delete/{id}', 'ProductController@destroy');
 
 Route::get('/home', 'HomeController@index')->name('home');
 // Route::get('{path?}')->where('path', '([A-z\d\/_.]+)?');
+
+Route::get('/getOngkir', 'Frontend\CartController@getOngkir');

@@ -344,7 +344,11 @@
                 </div>
                 <div class="space20"></div>
                 <div class="sep"></div>
-                <a class="btn-color" @click="addCart(object.id)" href="#">Add to Bag</a>
+                <a
+                  class="btn-color"
+                  v-on:click="addCart({id: object.id, qty: qty})"
+                  href="#"
+                >Add to Bag</a>
                 <button @click="details()" class="btn-black">Go to Details</button>
               </div>
             </div>
@@ -357,16 +361,6 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 export default {
-  props: {
-    counter: {
-      type: Number,
-      required: true
-    },
-    stat: {
-      type: Boolean,
-      required: true
-    }
-  },
   data() {
     return {
       qty: 1,
@@ -377,19 +371,27 @@ export default {
   },
   mounted() {},
   computed: {
-    ...mapGetters(["allItem", "text"])
+    ...mapGetters(["allItem"])
   },
   created() {
     this.fetchProductLimit();
+    Fire.$on("modalHide", data => {
+      $("#myModal").modal("hide");
+      $(".modal-backdrop").remove();
+    });
   },
   methods: {
     ...mapActions(["fetchProductLimit"]),
+    ...mapActions("cart", {
+      addCart: "addCart"
+    }),
+    submitCart(id) {
+      this.addCart(id, this.qty);
+    },
     showDetails(item) {
       this.qty = 1;
-      //   console.log(item);
       this.object = item;
       this.html = "";
-      //   console.log(this.object.); <carousel :data="slide"></carousel>
 
       var photo = [];
       var html = "";
@@ -419,38 +421,6 @@ export default {
       console.log(this.slide);
 
       $("#myModal").modal("show");
-      //   $(".modal-backdrop").remove();
-    },
-    addCart(id) {
-      if (localStorage.getItem("bebeartie.jwt") != null) {
-        this.$Progress.start();
-        axios.defaults.headers.common["Content-Type"] = "application/json";
-        axios.defaults.headers.common["Authorization"] =
-          "Bearer " + localStorage.getItem("bebeartie.jwt");
-
-        let user = JSON.parse(localStorage.getItem("bebeartie.user"));
-
-        axios
-          .post("api/cart/add", {
-            quality: this.qty,
-            product_id: id,
-            member_id: user.id
-          })
-          .then(res => {
-            Fire.$emit("addCart", true);
-            this.$Progress.finish();
-            console.log(res);
-
-            $("#myModal").modal("hide");
-            $(".modal-backdrop").remove();
-          })
-          .catch(err => {
-            this.$Progress.fail();
-            console.error(err);
-          });
-      } else {
-        Fire.$emit("mustLogin", true);
-      }
     },
     details() {
       $("#myModal").modal("hide");
