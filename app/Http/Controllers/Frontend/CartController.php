@@ -6,7 +6,6 @@ use App\Cart;
 use App\Http\Controllers\Controller;
 use App\List_item;
 use Illuminate\Http\Request;
-use Ixudra\Curl\Facades\Curl;
 
 class CartController extends Controller
 {
@@ -115,14 +114,5 @@ class CartController extends Controller
     public function destroy($id)
     {
         List_item::findorFail($id)->delete();
-    }
-
-    public function getOngkir()
-    {
-        $result = Curl::to('https://api.rajaongkir.com/starter/city?province=12')
-            ->withHeader('key: d04e41ec70378c13df3a9cce3d6080c0')
-            ->asJson()
-            ->get();
-        return response()->json($result);
     }
 }

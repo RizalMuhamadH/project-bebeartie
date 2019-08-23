@@ -6,6 +6,7 @@ const state = {
     subTotal: 0,
     lengthItem: 0,
     selected: null,
+    weight: 0
 };
 
 const getters = {
@@ -13,7 +14,8 @@ const getters = {
     totalPrice: (state) => state.totalPrice,
     subTotal: (state) => state.subTotal,
     lengthItem: (state) => state.lengthItem,
-    selected: (state) => state.selected
+    selected: (state) => state.selected,
+    weight: (state) => state.weight,
 };
 
 const actions = {
@@ -27,6 +29,7 @@ const actions = {
 
                     let subTotal = 0;
                     let total = 0;
+                    let weight = 0;
                     for (let i = 0; i < res.data.length; i++) {
 
                         let discount = state.listItem[i].product.price *
@@ -38,8 +41,11 @@ const actions = {
 
                         subTotal += res.data[i].quality * res.data[i].product.price;
 
+                        weight += state.listItem[i].product.weight;
+
                         console.log(subTotal);
                     }
+                    commit('SET_WEIGHT', weight);
                     commit('SET_SUB_TOTAL', subTotal);
                     commit('SET_TOTAL_PRICE', total);
                     console.log(res);
@@ -134,7 +140,8 @@ const mutations = {
     SET_TOTAL_PRICE: (state, total) => state.totalPrice = total,
     SET_SUB_TOTAL: (state, sub) => state.subTotal = sub,
     SET_LENGTH_ITEM: (state, length) => state.lengthItem = length,
-    SET_SELECTED_ITEM: (state, selected) => state.selected = selected
+    SET_SELECTED_ITEM: (state, selected) => state.selected = selected,
+    SET_WEIGHT: (state, weight) => state.weight = weight,
 };
 
 export default {

@@ -302,6 +302,11 @@ const routes = [{
         name: 'bag',
         component: require('./components/frontend/Bag.vue').default
     },
+    {
+        path: '/checkout',
+        name: 'checkout',
+        component: require('./components/frontend/Checkout.vue').default
+    },
 ]
 
 const router = new VueRouter({ routes });

@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
  */
 
+Route::get('/getProvince', 'Frontend\ShippingController@getProvince');
+Route::get('/getCity/{province}', 'Frontend\ShippingController@getCity');
+Route::post('/getCost', 'Frontend\ShippingController@getCost');
+
 Route::group(['middleware' => 'auth:api-member'], function () {
     Route::post('/cart/add', 'Frontend\CartController@store');
     Route::put('/cart/update/{id}', 'Frontend\CartController@update');

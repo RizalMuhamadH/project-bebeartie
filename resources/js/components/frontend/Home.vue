@@ -115,7 +115,7 @@
                   <div class="ci-total">Subtotal: {{ subTotal | currency }}</div>
                   <div class="cart-btn">
                     <router-link to="/view">View Bag</router-link>
-                    <a href="#">Checkout</a>
+                    <router-link to="/checkout" href="#">Checkout</router-link>
                   </div>
                 </div>
                 <div class="cart-info" v-else>Empty</div>
@@ -314,7 +314,6 @@ export default {
     })
   },
   created() {
-    this.cekOngkir();
     this.change();
     this.load();
     this.itemCart();
