@@ -582,6 +582,18 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@chenfengyuan/create-vue-component@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@chenfengyuan/create-vue-component/-/create-vue-component-1.1.0.tgz#fde9b8af8d9d2812c8ea64cb50a138f43bb3709d"
+  dependencies:
+    is-vue-component "^1.0.0"
+
+"@chenfengyuan/vue-carousel@^1.0.2":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@chenfengyuan/vue-carousel/-/vue-carousel-1.0.5.tgz#3c030f49b5a75e5b55c07af8d631217c3f97bff5"
+  dependencies:
+    "@chenfengyuan/create-vue-component" "^1.1.0"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -592,6 +604,14 @@
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
+
+"@nuxt/opencollective@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@nuxt/opencollective/-/opencollective-0.3.0.tgz#11d8944dcf2d526e31660bb69570be03f8fb72b7"
+  dependencies:
+    chalk "^2.4.2"
+    consola "^2.10.1"
+    node-fetch "^2.6.0"
 
 "@types/events@*":
   version "3.0.0"
@@ -777,6 +797,10 @@ accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
   dependencies:
     mime-types "~2.1.24"
     negotiator "0.6.2"
+
+accounting@0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/accounting/-/accounting-0.4.1.tgz#87dd4103eff7f4460f1e186f5c677ed6cf566883"
 
 acorn@^6.2.0:
   version "6.2.0"
@@ -967,12 +991,11 @@ autoprefixer@^9.4.2:
     postcss "^7.0.17"
     postcss-value-parser "^4.0.0"
 
-axios@^0.19:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.0.tgz#8e09bff3d9122e133f7b8101c8fbdd00ed3d2ab8"
+axios@^0.19.0:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   dependencies:
     follow-redirects "1.5.10"
-    is-buffer "^2.0.2"
 
 babel-code-frame@^6.26.0:
   version "6.26.0"
@@ -1079,9 +1102,19 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
 
-bootstrap@^4.1.0:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.3.1.tgz#280ca8f610504d99d7b6b4bfc4b68cec601704ac"
+bootstrap-vue@^2.0.0-rc.27:
+  version "2.15.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-2.15.0.tgz#0dfc12c054496c0f10efed510da1def41697cf3c"
+  dependencies:
+    "@nuxt/opencollective" "^0.3.0"
+    bootstrap ">=4.5.0 <5.0.0"
+    popper.js "^1.16.1"
+    portal-vue "^2.1.7"
+    vue-functional-data-merge "^3.1.0"
+
+"bootstrap@>=4.5.0 <5.0.0", bootstrap@^4.3.1:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.5.0.tgz#97d9dbcb5a8972f8722c9962483543b907d9b9ec"
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -1508,6 +1541,10 @@ connect-history-api-fallback@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/connect-history-api-fallback/-/connect-history-api-fallback-1.6.0.tgz#8b32089359308d111115d81cad3fceab888f97bc"
 
+consola@^2.10.1:
+  version "2.12.2"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-2.12.2.tgz#9610f158e7b0a9ecc8f8bb0c4fc8e7c52bf41d05"
+
 console-browserify@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-browserify/-/console-browserify-1.1.0.tgz#f0241c45730a9fc6323b206dbf38edc741d0bb10"
@@ -1824,6 +1861,10 @@ cyclist@~0.2.2:
 date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
+
+de-indent@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/de-indent/-/de-indent-1.0.2.tgz#b2038e846dc33baa5796128d0804b455b8c1e21d"
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
@@ -2679,7 +2720,7 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-he@1.2.x:
+he@1.2.x, he@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
 
@@ -2981,10 +3022,6 @@ is-buffer@^1.1.5, is-buffer@~1.1.1:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
 
-is-buffer@^2.0.2:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-2.0.3.tgz#4ecf3fcf749cbd1e472689e109ac66261a25e725"
-
 is-callable@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/is-callable/-/is-callable-1.1.4.tgz#1e1adf219e1eeb684d691f9d6a05ff0d30a24d75"
@@ -3072,6 +3109,10 @@ is-glob@^4.0.0, is-glob@^4.0.1:
   dependencies:
     is-extglob "^2.1.1"
 
+is-non-null-object@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-non-null-object/-/is-non-null-object-1.0.0.tgz#80dae23beb02f995e435a2ff8d491d4b17413e95"
+
 is-number@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-3.0.0.tgz#24fd6201a4782cf50561c810276afc7d12d71195"
@@ -3133,6 +3174,12 @@ is-symbol@^1.0.2:
   resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.2.tgz#a055f6ae57192caee329e7a860118b497a950f38"
   dependencies:
     has-symbols "^1.0.0"
+
+is-vue-component@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/is-vue-component/-/is-vue-component-1.0.0.tgz#eeecef5d02edf5c8ac48c79157b13489feecf3c5"
+  dependencies:
+    is-non-null-object "^1.0.0"
 
 is-windows@^1.0.0, is-windows@^1.0.1, is-windows@^1.0.2:
   version "1.0.2"
@@ -3286,6 +3333,10 @@ laravel-mix@^4.0.7:
     webpack-merge "^4.1.0"
     webpack-notifier "^1.5.1"
     yargs "^12.0.5"
+
+laravel-vue-pagination@^2.3.0:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/laravel-vue-pagination/-/laravel-vue-pagination-2.3.1.tgz#15d04db3f67a6a203077dbbe6f9aeb3cf6bffa3c"
 
 last-call-webpack-plugin@^3.0.0:
   version "3.0.0"
@@ -3727,6 +3778,10 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
+node-fetch@^2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
+
 node-forge@0.7.5:
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/node-forge/-/node-forge-0.7.5.tgz#6c152c345ce11c52f465c2abd957e8639cd674df"
@@ -4157,6 +4212,14 @@ pkg-dir@^3.0.0:
 popper.js@^1.12:
   version "1.15.0"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.15.0.tgz#5560b99bbad7647e9faa475c6b8056621f5a4ff2"
+
+popper.js@^1.16.1:
+  version "1.16.1"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
+
+portal-vue@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/portal-vue/-/portal-vue-2.1.7.tgz#ea08069b25b640ca08a5b86f67c612f15f4e4ad4"
 
 portfinder@^1.0.20:
   version "1.0.21"
@@ -5294,6 +5357,10 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
+sweetalert2@^8.14.0:
+  version "8.19.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-8.19.0.tgz#692269bc8ddc5760e2b5070da2cf5e9e278bac0b"
+
 tapable@^1.0.0, tapable@^1.1.0:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.1.3.tgz#a1fccc06b58db61fd7a45da2da44f5f3a3e67ba2"
@@ -5365,6 +5432,10 @@ timers-browserify@^2.0.4:
 timsort@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/timsort/-/timsort-0.3.0.tgz#405411a8e7e6339fe64db9a234de11dc31e02bd4"
+
+tinymce@^4.7.7:
+  version "4.9.10"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-4.9.10.tgz#47bd7b4d27d80d53a464356eb7c72b97e5c3aadd"
 
 to-arraybuffer@^1.0.0:
   version "1.0.1"
@@ -5582,9 +5653,23 @@ vendors@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/vendors/-/vendors-1.0.3.tgz#a6467781abd366217c050f8202e7e50cc9eef8c0"
 
+vform@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vform/-/vform-1.0.1.tgz#aedce47696c589e0c1eab9bd76a00189d6164683"
+
 vm-browserify@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.0.tgz#bd76d6a23323e2ca8ffa12028dc04559c75f9019"
+
+vue-currency-filter@^3.4.2:
+  version "3.4.3"
+  resolved "https://registry.yarnpkg.com/vue-currency-filter/-/vue-currency-filter-3.4.3.tgz#d2f497fcb7079c19451ed5ae001772a2f0e0370c"
+  dependencies:
+    accounting "0.4.1"
+
+vue-functional-data-merge@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-3.1.0.tgz#08a7797583b7f35680587f8a1d51d729aa1dc657"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.3"
@@ -5600,6 +5685,14 @@ vue-loader@^15.4.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
+vue-progressbar@^0.7.5:
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/vue-progressbar/-/vue-progressbar-0.7.5.tgz#414730892252b1e45582d4979dec93038e007f79"
+
+vue-router@^3.0.7:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.3.2.tgz#0099de402edb2fe92f9711053ab5a2156f239cad"
+
 vue-style-loader@^4.1.0:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-4.1.2.tgz#dedf349806f25ceb4e64f3ad7c0a44fba735fcf8"
@@ -5607,13 +5700,36 @@ vue-style-loader@^4.1.0:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
+vue-template-compiler@^2.5.13, vue-template-compiler@^2.6.10:
+  version "2.6.11"
+  resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.6.11.tgz#c04704ef8f498b153130018993e56309d4698080"
+  dependencies:
+    de-indent "^1.0.2"
+    he "^1.1.0"
+
 vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
 
+vue-tinymce-editor@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/vue-tinymce-editor/-/vue-tinymce-editor-1.6.2.tgz#3edfc736782fdb6515d50ce701720e9ec77df9fd"
+  dependencies:
+    tinymce "^4.7.7"
+    vue "^2.5.13"
+    vue-template-compiler "^2.5.13"
+
+vue@^2.5.13:
+  version "2.6.11"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
+
 vue@^2.5.17:
   version "2.6.10"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
+
+vuex@^3.1.1:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.4.0.tgz#20cc086062d750769fce1febb34e7fceeaebde45"
 
 watchpack@^1.5.0:
   version "1.6.0"
@@ -5755,8 +5871,8 @@ websocket-driver@>=0.5.1:
     websocket-extensions ">=0.1.1"
 
 websocket-extensions@>=0.1.1:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.3.tgz#5d2ff22977003ec687a4b87073dfbbac146ccf29"
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/websocket-extensions/-/websocket-extensions-0.1.4.tgz#7f8473bc839dfd87608adb95d7eb075211578a42"
 
 which-module@^2.0.0:
   version "2.0.0"
